@@ -16,8 +16,8 @@ interface UserContextValue {
 
 const defaultUser: CurrentUser = {
   id: 'u0',
-  name: 'Aditya Rao',
-  email: 'aditya.rao@ngip.io',
+  name: 'Anurag Yadav',
+  email: 'anurag.yadav@ngip.io',
   role: 'Individual',
   accountType: 'Individual • INR',
 };

@@ -9,7 +9,7 @@ import { useUser } from '../../contexts/UserContext';
 
 export function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = React.useState('aditya.rao@ngip.io');
+  const [email, setEmail] = React.useState('Anurag.Yadav.rao@ngip.io');
   const [password, setPassword] = React.useState('');
   const [show, setShow] = React.useState(false);
   const [remember, setRemember] = React.useState(true);

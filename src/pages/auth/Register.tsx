@@ -55,7 +55,7 @@ export function Register() {
           <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Aditya Rao"
+            placeholder="Anurag Yadav"
             autoComplete="name" />
           
         </Field>
