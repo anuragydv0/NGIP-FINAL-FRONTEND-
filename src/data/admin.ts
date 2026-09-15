@@ -1,4 +1,4 @@
-﻿import { AdminUser, AuditLogEntry, DataIngestionJob, SystemHealthMetrics, AdminResearchReport, Instrument } from '../types';
+import { AdminUser, AuditLogEntry, DataIngestionJob, SystemHealthMetrics } from '../types';
 import { instruments } from './instruments';
 
 export const adminUsers: AdminUser[] = [

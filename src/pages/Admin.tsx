@@ -1,21 +1,19 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { PageHeader, PageBody } from '../components/ui/PageHeader';
 import { Card, CardHeader } from '../components/ui/Card';
-import { DataTable, Column } from '../components/ui/Table';
+import { DataTable } from '../components/ui/Table';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { AreaSeries } from '../components/charts/Charts';
 import { Input } from '../components/ui/Input';
 import { useToast } from '../components/ui/Toast';
-import { Tabs } from '../components/ui/Tabs';
 import { Modal } from '../components/ui/Overlay';
 
 import { adminUsers, auditLogs, ingestionJobs, systemHealth, adminInstruments } from '../data/admin';
 import { countries } from '../data/countries';
 import { orders } from '../data/portfolio';
 import { research } from '../data/content';
-import { AdminUser, DataIngestionJob } from '../types';
-import { pct, num } from '../utils/format';
+import { num } from '../utils/format';
 import { Link } from 'react-router-dom';
 
 function useSimulatedLoading() {

@@ -7,7 +7,7 @@ import {
   SlidersHorizontalIcon } from
 'lucide-react';
 import { PageBody, PageHeader } from '../components/ui/PageHeader';
-import { Card, CardHeader } from '../components/ui/Card';
+import { Card } from '../components/ui/Card';
 import { Badge, DataStatus, Delta, RiskBadge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { SearchInput } from '../components/ui/Input';
