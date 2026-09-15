@@ -1,240 +1,236 @@
-import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PageBody, PageHeader } from '../components/ui/PageHeader';
-import { Card, CardHeader, StatCard } from '../components/ui/Card';
-import { Badge, DataStatus, RiskBadge, ScoreBar } from '../components/ui/Badge';
-import { Button } from '../components/ui/Button';
-import {
-  AreaSeries,
-  BarSeries,
-  Heatmap,
-  ScatterPlot } from
-'../components/charts/Charts';
-import { InsightCard } from '../components/domain/Cards';
-import {
-  countryAllocation,
-  currencyAllocation,
-  drawdownSeries,
-  holdings,
-  portfolioSummary } from
-'../data/portfolio';
-import { countries } from '../data/countries';
+import { Card, CardHeader } from '../components/ui/Card';
+import { Badge } from '../components/ui/Badge';
+import { DataTable, Column } from '../components/ui/Table';
+import { AreaSeries, BarSeries } from '../components/charts/Charts';
 import { pct } from '../utils/format';
 
-const correlationRows = ['India', 'Vietnam', 'US', 'Korea', 'Germany', 'UAE'];
-const correlationValues = [
-[1, 0.62, 0.41, 0.58, 0.34, 0.29],
-[0.62, 1, 0.36, 0.64, 0.31, 0.24],
-[0.41, 0.36, 1, 0.72, 0.68, 0.44],
-[0.58, 0.64, 0.72, 1, 0.52, 0.38],
-[0.34, 0.31, 0.68, 0.52, 1, 0.41],
-[0.29, 0.24, 0.44, 0.38, 0.41, 1]];
-
+import { holdings, drawdownSeries, portfolioSummary } from '../data/portfolio';
+import { countries } from '../data/countries';
+import { RiskBand } from '../types';
 
 export function RiskAnalysis() {
-  const scatter = holdings.map((h) => {
-    const c = countries.find((x) => x.name === h.country);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading for future async readiness
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const riskBandColor = (band: RiskBand | undefined) => {
+    switch (band) {
+      case 'High': return 'neg';
+      case 'Elevated': return 'warn';
+      case 'Moderate': return 'info';
+      case 'Low': return 'pos';
+      default: return 'info';
+    }
+  };
+
+  const riskBandColorHex = (band: RiskBand | undefined) => {
+    switch (band) {
+      case 'High': return '#C2372C'; // neg
+      case 'Elevated': return '#E08300'; // warn
+      case 'Moderate': return '#0072D4'; // info
+      case 'Low': return '#107c41'; // pos
+      default: return '#0072D4';
+    }
+  };
+
+  const holdingsWithRisk = holdings.map(h => {
+    const country = countries.find(c => c.name === h.country);
     return {
-      x: c?.riskScore ?? 40,
-      y: h.returnPct,
-      z: h.weight * 8,
-      name: h.symbol
+      ...h,
+      riskBand: country?.riskBand || 'Moderate',
+      contribution: h.weight * 1.2 * (country?.riskScore || 50) / 100 // Mock contribution
     };
   });
 
-  const topCountry = countryAllocation[0];
+  const num = (v: number, dec = 1) => v.toFixed(dec);
+
+  const columns: Column<typeof holdingsWithRisk[0]>[] = [
+    {
+      key: 'name',
+      header: 'Instrument',
+      sortable: true,
+      sortValue: (r) => r.name,
+      render: (r) => (
+        <div>
+          <div className="font-medium text-ink">{r.name}</div>
+          <div className="text-xs text-ink-3">{r.symbol}</div>
+        </div>
+      )
+    },
+    {
+      key: 'country',
+      header: 'Country',
+      sortable: true,
+      sortValue: (r) => r.country,
+      hideBelow: 'md',
+      render: (r) => (
+        <div className="flex items-center gap-2">
+          <span>{r.flag}</span>
+          <span>{r.country}</span>
+        </div>
+      )
+    },
+    {
+      key: 'riskBand',
+      header: 'Risk Band',
+      sortable: true,
+      sortValue: (r) => r.riskBand,
+      render: (r) => (
+        <Badge tone={riskBandColor(r.riskBand)}>{r.riskBand}</Badge>
+      )
+    },
+    {
+      key: 'weight',
+      header: 'Weight',
+      align: 'right',
+      sortable: true,
+      sortValue: (r) => r.weight,
+      render: (r) => <div className="font-medium tabular-nums">{pct(r.weight, 1)}</div>
+    },
+    {
+      key: 'contribution',
+      header: 'Risk Contrib.',
+      align: 'right',
+      sortable: true,
+      sortValue: (r) => r.contribution,
+      hideBelow: 'sm',
+      render: (r) => <div className="font-medium tabular-nums">{num(r.contribution, 2)}%</div>
+    }
+  ];
+
+  // Fix 2: Group holdingsWithRisk by riskBand
+  const riskBreakdownMap = {
+    High: 0,
+    Elevated: 0,
+    Moderate: 0,
+    Low: 0
+  };
+  
+  holdingsWithRisk.forEach(h => {
+    if (riskBreakdownMap[h.riskBand as keyof typeof riskBreakdownMap] !== undefined) {
+      riskBreakdownMap[h.riskBand as keyof typeof riskBreakdownMap] += h.weight;
+    }
+  });
+
+  const riskBreakdown = [
+    { label: 'High', value: Number(riskBreakdownMap.High.toFixed(1)), color: riskBandColorHex('High') },
+    { label: 'Elevated', value: Number(riskBreakdownMap.Elevated.toFixed(1)), color: riskBandColorHex('Elevated') },
+    { label: 'Moderate', value: Number(riskBreakdownMap.Moderate.toFixed(1)), color: riskBandColorHex('Moderate') },
+    { label: 'Low', value: Number(riskBreakdownMap.Low.toFixed(1)), color: riskBandColorHex('Low') }
+  ];
+
+  // Fix 3: Compute Overall Risk band based on highest weight
+  let maxWeight = -1;
+  let overallRiskBand: RiskBand = 'Moderate';
+  Object.entries(riskBreakdownMap).forEach(([band, weight]) => {
+    if (weight > maxWeight) {
+      maxWeight = weight;
+      overallRiskBand = band as RiskBand;
+    }
+  });
+
+  // Determine tone for Overall Risk text
+  const overallRiskTone = riskBandColor(overallRiskBand);
+  const overallRiskTextColor = 
+    overallRiskTone === 'neg' ? 'text-neg' :
+    overallRiskTone === 'warn' ? 'text-warn' :
+    overallRiskTone === 'pos' ? 'text-pos' : 'text-info';
+
+  // Fix 3: Compute real HHI
+  const hhiValue = holdingsWithRisk.reduce((acc, h) => acc + Math.pow(h.weight / 100, 2), 0);
+  const hhiRounded = hhiValue.toFixed(2);
+  let hhiText = 'Moderate portfolio concentration';
+  if (hhiValue < 0.15) hhiText = 'Low portfolio concentration';
+  else if (hhiValue > 0.25) hhiText = 'High portfolio concentration';
 
   return (
     <>
       <PageHeader
         breadcrumbs={[
-        { label: 'Analytics', to: '/app/analytics' },
-        { label: 'Risk analysis' }]
-        }
+          { label: 'Analytics', to: '/app/analytics' },
+          { label: 'Risk analysis' }
+        ]}
         title="Risk analysis"
-        subtitle="Concentration, volatility and correlation across countries, sectors and currencies."
-        meta={<DataStatus status="UPDATED" detail="Risk engine run 15:00 IST" />}
-        actions={
-        <>
-            <Link to="/app/scenario">
-              <Button>Scenario analysis</Button>
-            </Link>
-            <Link to="/app/ai-analyst">
-              <Button variant="primary">Ask the AI analyst</Button>
-            </Link>
-          </>
-        } />
+        subtitle="Portfolio-level risk metrics, concentration, and VaR breakdown."
+      />
       
-
-      <PageBody className="space-y-5">
-        <div className="grid gap-4 lg:grid-cols-3">
-          <InsightCard
-            tone="warn"
-            title={`${topCountry.weight.toFixed(0)}% of your portfolio exposure is concentrated in one country`}
-            body={`${topCountry.name} represents ${pct(topCountry.weight, 1)} of portfolio value across four instruments. A single-country policy or currency shock would transmit directly to almost half the portfolio.`}
-            action={
-            <Link
-              to="/app/holdings"
-              className="text-[11px] font-semibold text-accent hover:text-accent-hover">
-              
-                Review the holdings →
-              </Link>
-            } />
-          
-          <InsightCard
-            tone="info"
-            title="Currency exposure is less diversified than country exposure"
-            body="INR and USD together account for 74.5% of currency exposure. Adding EUR or JPY denominated instruments would reduce the portfolio's sensitivity to a single rate cycle." />
-          
-          <InsightCard
-            tone="pos"
-            title="Drawdown profile is shallower than the benchmark"
-            body={`Maximum drawdown of ${pct(portfolioSummary.maxDrawdown, 1)} compares favourably with -19.6% for NGIP Global 200 over the same period, largely due to the sovereign debt allocation.`} />
-          
-        </div>
-
-        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-          <StatCard
-            label="Volatility"
-            value={pct(portfolioSummary.volatility, 1)}
-            sub="Annualised, 1Y" />
-          
-          <StatCard
-            label="Sharpe ratio"
-            value={portfolioSummary.sharpe.toFixed(2)}
-            sub="Above peer median" />
-          
-          <StatCard
-            label="Maximum drawdown"
-            value={pct(portfolioSummary.maxDrawdown, 1)}
-            tone="neg"
-            sub="Mar 2025" />
-          
-          <StatCard
-            label="Concentration (HHI)"
-            value="0.28"
-            sub="Moderate concentration" />
-          
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-2">
-          <Card>
-            <CardHeader
-              title="Risk versus return"
-              subtitle="Holding return against country risk score · bubble size is portfolio weight" />
-            
-            <div className="px-3 py-4">
-              <ScatterPlot
-                data={scatter}
-                xLabel="Country risk score"
-                yLabel="Holding return %"
-                height={300} />
-              
+      <PageBody className="space-y-6">
+        <div className="grid gap-6 sm:grid-cols-3">
+          <Card className="p-5 flex flex-col justify-between">
+            <div className="text-xs font-semibold uppercase tracking-wider text-ink-3 mb-4">Overall Risk</div>
+            <div>
+              <div className={`text-3xl font-bold mb-1 ${overallRiskTextColor}`}>{overallRiskBand}</div>
+              <p className="text-sm text-ink-2">Driven by largest portfolio allocation</p>
             </div>
           </Card>
+          <Card className="p-5 flex flex-col justify-between">
+            <div className="text-xs font-semibold uppercase tracking-wider text-ink-3 mb-4">Volatility Proxy (1Y)</div>
+            <div>
+              <div className="text-3xl font-bold text-ink mb-1">{pct(portfolioSummary.volatility || 14.5, 1)}</div>
+              <p className="text-sm text-ink-2">Annualized standard deviation</p>
+            </div>
+          </Card>
+          <Card className="p-5 flex flex-col justify-between">
+            <div className="text-xs font-semibold uppercase tracking-wider text-ink-3 mb-4">Concentration (HHI)</div>
+            <div>
+              <div className="text-3xl font-bold text-ink mb-1">{hhiRounded}</div>
+              <p className="text-sm text-ink-2">{hhiText}</p>
+            </div>
+          </Card>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
           <Card>
-            <CardHeader
-              title="Country concentration"
-              subtitle="Share of portfolio value by economy" />
-            
-            <div className="px-3 py-4">
+            <CardHeader title="Country Risk Exposure" subtitle="Allocation by sovereign risk band" />
+            <div className="p-5">
               <BarSeries
-                data={countryAllocation.map((c) => ({
-                  label: c.name,
-                  weight: c.weight
-                }))}
+                data={riskBreakdown}
                 xKey="label"
-                series={[{ key: 'weight', label: 'Weight %' }]}
-                layout="vertical"
-                height={300}
-                formatter={(v) => `${Number(v).toFixed(1)}%`} />
-              
+                series={[{ key: 'value', label: 'Weight %' }]}
+                layout="horizontal"
+                height={260}
+                formatter={(v) => `${v}%`}
+              />
+            </div>
+          </Card>
+
+          <Card>
+            <CardHeader title="Historical Drawdown" subtitle="Portfolio decline from running peak" />
+            <div className="p-5">
+              {loading ? (
+                <div className="h-[260px] w-full animate-pulse bg-subtle rounded"></div>
+              ) : (
+                <AreaSeries
+                  data={drawdownSeries}
+                  xKey="date"
+                  series={[{ key: 'drawdown', label: 'Drawdown %', color: '#C2372C' }]}
+                  height={260}
+                  formatter={(v) => `${Number(v).toFixed(2)}%`}
+                />
+              )}
             </div>
           </Card>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
-          <Card>
-            <CardHeader title="Currency exposure" />
-            <div className="space-y-3.5 p-5">
-              {currencyAllocation.map((c) =>
-              <div key={c.name}>
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-xs font-medium text-ink-2">{c.name}</span>
-                    <span className="num text-xs font-semibold tabular-nums text-ink">
-                      {pct(c.weight, 1)}
-                    </span>
-                  </div>
-                  <ScoreBar
-                  value={c.weight}
-                  tone={c.weight > 40 ? 'warn' : 'accent'}
-                  className="mt-1.5" />
-                
-                </div>
-              )}
-            </div>
-          </Card>
-          <Card>
-            <CardHeader
-              title="Correlation matrix"
-              subtitle="Trailing 12-month return correlation between country exposures" />
-            
-            <div className="p-4">
-              <Heatmap
-                rows={correlationRows}
-                columns={correlationRows}
-                values={correlationValues} />
-              
-            </div>
-          </Card>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-[1.3fr_1fr]">
-          <Card>
-            <CardHeader
-              title="Drawdown history"
-              subtitle="Portfolio decline from running peak" />
-            
-            <div className="px-3 py-4">
-              <AreaSeries
-                data={drawdownSeries}
-                xKey="date"
-                series={[{ key: 'drawdown', label: 'Drawdown %', color: '#C2372C' }]}
-                height={264}
-                formatter={(v) => `${Number(v).toFixed(2)}%`} />
-              
-            </div>
-          </Card>
-          <Card>
-            <CardHeader title="Risk register" subtitle="By exposure category" />
-            <ul className="divide-y divide-line">
-              {[
-              ['Country risk', 'Elevated', 'India 48.4% · concentration above policy'],
-              ['Regional risk', 'Moderate', 'Asia Pacific 72.1% of exposure'],
-              ['Currency risk', 'Elevated', 'INR and USD 74.5% combined'],
-              ['Liquidity risk', 'Low', 'All holdings above ₹300 Cr AUM'],
-              ['Sector risk', 'Moderate', 'Infrastructure and technology 42%'],
-              ['Interest rate risk', 'Moderate', 'Duration 4.2 years on debt sleeve']].
-              map(([label, band, note]) =>
-              <li key={label} className="flex flex-wrap items-center gap-3 px-5 py-3">
-                  <span className="w-32 text-[13px] font-medium text-ink">
-                    {label}
-                  </span>
-                  <RiskBadge band={band} />
-                  <span className="min-w-[180px] flex-1 text-xs text-ink-3">
-                    {note}
-                  </span>
-                </li>
-              )}
-            </ul>
-            <div className="border-t border-line px-5 py-3">
-              <Badge tone="info">
-                Risk model is simulated for demonstration purposes
-              </Badge>
-            </div>
-          </Card>
-        </div>
+        <Card>
+          <CardHeader title="Holdings Risk Analysis" subtitle="Individual instrument contribution to portfolio risk" />
+          <div className="border-t border-line">
+            <DataTable
+              columns={columns}
+              rows={holdingsWithRisk}
+              rowKey={(r) => r.id}
+              loading={loading}
+            />
+          </div>
+        </Card>
       </PageBody>
-    </>);
-
+    </>
+  );
 }

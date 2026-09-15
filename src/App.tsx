@@ -1,6 +1,8 @@
-import React from 'react';
+﻿import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastProvider } from './components/ui/Toast';
+import { UserProvider } from './contexts/UserContext';
+import { RequireAdmin } from './components/RequireAdmin';
 import { OrderTicketProvider } from './contexts/OrderTicketContext';
 import { AppShell } from './components/shell/AppShell';
 
@@ -36,34 +38,27 @@ import { EconomicCalendar } from './pages/EconomicCalendar';
 
 import { Analytics } from './pages/Analytics';
 import { RiskAnalysis } from './pages/RiskAnalysis';
+import { AdminDashboard, AdminUsers, AdminCountries, AdminEconomicData, AdminCGI, AdminInstruments, AdminOrders, AdminResearch, AdminAudit, SystemHealth } from './pages/Admin';
+import { StrategyBuilder } from './pages/Strategy';
+import { Backtesting } from './pages/Backtesting';
 
 import {
   Alerts,
   NotificationsPage,
-  AdminAudit,
-  AdminCGI,
-  AdminCountries,
-  AdminDashboard,
-  AdminEconomicData,
-  AdminInstruments,
-  AdminOrders,
-  AdminResearch,
-  AdminUsers,
   AIPortfolioAnalyst,
   AIResearch,
-  Backtesting,
   Profile,
   Reports,
   ScenarioAnalysis,
   Security,
   Settings,
-  StrategyBuilder,
-  SystemHealth } from
+   } from
 './pages/Pending';
 
 export function App() {
   return (
     <BrowserRouter>
+      <UserProvider>
       <ToastProvider>
         <OrderTicketProvider>
           <Routes>
@@ -119,7 +114,7 @@ export function App() {
               <Route path="security" element={<Security />} />
             </Route>
 
-            <Route path="/admin" element={<AppShell />}>
+            <Route path="/admin" element={<RequireAdmin><AppShell /></RequireAdmin>}>
               <Route
                 index
                 element={<Navigate to="/admin/dashboard" replace />} />
@@ -140,6 +135,10 @@ export function App() {
           </Routes>
         </OrderTicketProvider>
       </ToastProvider>
+      </UserProvider>
     </BrowserRouter>);
 
 }
+
+
+

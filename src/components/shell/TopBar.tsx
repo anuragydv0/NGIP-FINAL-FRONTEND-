@@ -6,6 +6,7 @@ import { IconButton } from '../ui/Button';
 import { MenuItem, Popover } from '../ui/Overlay';
 import { notifications } from '../../data/content';
 import { cx } from '../../utils/format';
+import { useUser } from '../../contexts/UserContext';
 export function TopBar({
   onOpenCommand,
   onOpenMobileNav
@@ -13,6 +14,8 @@ export function TopBar({
 
 
 }: {onOpenCommand: () => void;onOpenMobileNav: () => void;}) {
+  const { currentUser } = useUser();
+  const initials = currentUser.name.split(" ").map(n => n[0]).join("").substring(0, 2);
   const navigate = useNavigate();
   const unread = notifications.filter((n) => !n.read).length;
   return <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-line bg-surface px-3 lg:px-4">
@@ -107,21 +110,19 @@ export function TopBar({
         toggle
       }) => <button type="button" onClick={toggle} className="ml-1 flex items-center gap-2 rounded-md p-1 pr-2 transition-colors duration-150 ease-swift hover:bg-ink/[0.04]" aria-label="Account menu">
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-[11px] font-semibold text-white">
-                AR
+                {initials}
               </span>
               <span className="hidden text-left leading-tight lg:block">
                 <span className="block text-[12px] font-semibold text-ink">
-                  Aditya Rao
+                  {currentUser.name}
                 </span>
-                <span className="block text-[10px] text-ink-4">
-                  Individual · INR
-                </span>
+                <span className="block text-[10px] text-ink-4">{currentUser.accountType}</span>
               </span>
             </button>}>
           {(close) => <div>
               <div className="border-b border-line px-2.5 pb-2 pt-1">
-                <p className="text-[13px] font-semibold text-ink">Aditya Rao</p>
-                <p className="text-[11px] text-ink-4">aditya.rao@ngip.io</p>
+                <p className="text-[13px] font-semibold text-ink">{currentUser.name}</p>
+                <p className="text-[11px] text-ink-4">{currentUser.email}</p>
               </div>
               <div className="pt-1">
                 <MenuItem icon={<UserIcon className="h-3.5 w-3.5" />} onClick={() => {

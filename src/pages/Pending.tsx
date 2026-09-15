@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { HammerIcon } from 'lucide-react';
 import { PageBody, PageHeader } from '../components/ui/PageHeader';
@@ -71,33 +71,11 @@ export const ScenarioAnalysis = () =>
 
 
 
-export const StrategyBuilder = () =>
-<Module
-  title="Strategy builder"
-  subtitle="Define quantitative country rules, rank the universe and build a rebalanced basket."
-  planned={[
-  'Rule builder (CGI, growth, inflation)',
-  'Ranking and selection',
-  'Weighting scheme',
-  'Rebalance frequency',
-  'Strategy results table',
-  'Return, volatility, Sharpe, drawdown']
-  } />;
 
 
 
-export const Backtesting = () =>
-<Module
-  title="Backtesting"
-  subtitle="Run a saved strategy against history with fees, slippage and a benchmark."
-  planned={[
-  'Strategy selector',
-  'Initial capital and date range',
-  'Benchmark, fees, slippage',
-  'Equity curve',
-  'Metrics table',
-  'Risk panel']
-  } />;
+
+
 
 
 
@@ -221,87 +199,5 @@ export const NotificationsPage = () =>
 
 
 
-export const AdminDashboard = () =>
-<Module
-  title="Admin dashboard"
-  subtitle="Operational overview of users, orders, data ingestion and platform health."
-  planned={[
-  'Users and active users',
-  'Orders and transactions',
-  'Volume and payments',
-  'KYC queue',
-  'Data ingestion status',
-  'System health']
-  } />;
 
 
-
-export const AdminUsers = () =>
-<Module
-  title="Admin · users"
-  subtitle="User accounts, KYC status and risk classification."
-  planned={['User', 'Status', 'Country', 'KYC', 'Created', 'Last active']} />;
-
-
-
-export const AdminCountries = () =>
-<Module
-  title="Admin · countries"
-  subtitle="Coverage universe, CGI publication status and data freshness."
-  planned={['Country', 'Status', 'CGI', 'Data freshness', 'Last updated', 'Methodology']} />;
-
-
-
-export const AdminEconomicData = () =>
-<Module
-  title="Admin · economic data"
-  subtitle="Sources, indicators, ingestion runs and data quality."
-  planned={['Sources', 'Indicators', 'Latest updates', 'Data quality', 'Failed ingestion', 'Stale and missing data']} />;
-
-
-
-export const AdminCGI = () =>
-<Module
-  title="Admin · CGI methodology"
-  subtitle="Manage pillar weights, indicator mapping, versions and calculation runs."
-  planned={['Methodology', 'Weights', 'Indicators', 'Versions', 'Calculation runs', 'Publishing status']} />;
-
-
-
-export const AdminInstruments = () =>
-<Module
-  title="Admin · instruments"
-  subtitle="Instrument master, providers, price sources and status."
-  planned={['Instrument', 'Provider', 'Type', 'Status', 'Price source', 'Risk and liquidity']} />;
-
-
-
-export const AdminOrders = () =>
-<Module
-  title="Admin · orders"
-  subtitle="Platform-wide order flow with provider status."
-  planned={['Order ID', 'User', 'Instrument', 'Side', 'Status', 'Provider status']} />;
-
-
-
-export const AdminResearch = () =>
-<Module
-  title="Admin · research"
-  subtitle="Editorial workflow for research publication."
-  planned={['Draft', 'Review', 'Published', 'Archived', 'Authors', 'Coverage gaps']} />;
-
-
-
-export const AdminAudit = () =>
-<Module
-  title="Admin · audit logs"
-  subtitle="Immutable record of administrative actions."
-  planned={['Timestamp', 'User', 'Action', 'Resource', 'Before and after', 'Request ID']} />;
-
-
-
-export const SystemHealth = () =>
-<Module
-  title="System health"
-  subtitle="Service status, latency and error rates across the platform."
-  planned={['API', 'Database', 'Redis', 'Kafka', 'Market data', 'WebSocket']} />;

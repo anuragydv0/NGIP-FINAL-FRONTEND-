@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   ArrowLeftRightIcon,
@@ -7,6 +7,7 @@ import {
   ShieldCheckIcon } from
 'lucide-react';
 import { cx } from '../../utils/format';
+import { useUser } from '../../contexts/UserContext';
 import { adminNav, appNav, NavSection } from './navigation';
 import { Tooltip } from '../ui/Overlay';
 
@@ -105,9 +106,11 @@ export function Sidebar({
 
 
 }: {collapsed: boolean;onToggle: () => void;}) {
+  const { currentUser } = useUser();
+  const userIsAdmin = currentUser?.role === "Admin";
   const { pathname } = useLocation();
-  const isAdmin = pathname.startsWith('/admin');
-  const sections = isAdmin ? adminNav : appNav;
+  const isAdminRoute = pathname.startsWith('/admin');
+  const sections = (isAdminRoute && userIsAdmin) ? adminNav : appNav;
 
   return (
     <aside
@@ -117,7 +120,7 @@ export function Sidebar({
         collapsed ? 'w-[60px]' : 'w-[228px]'
       )}>
       
-      {isAdmin &&
+      {(isAdminRoute && userIsAdmin) &&
       <div
         className={cx(
           'flex items-center gap-2 border-b border-line bg-ink px-3 py-2 text-white',
@@ -136,21 +139,23 @@ export function Sidebar({
         <SidebarNav sections={sections} collapsed={collapsed} />
       </div>
       <div className="border-t border-line p-3">
-        <NavLink
-          to={isAdmin ? '/app/dashboard' : '/admin/dashboard'}
+        {userIsAdmin && (
+          <NavLink
+          to={isAdminRoute ? '/app/dashboard' : '/admin/dashboard'}
           className={cx(
             'mb-1 flex items-center gap-2.5 rounded-md text-[13px] font-medium text-ink-3 transition-colors duration-150 ease-swift hover:bg-ink/[0.04] hover:text-ink',
             collapsed ? 'h-8 w-8 justify-center' : 'h-8 px-2.5'
           )}
-          title={isAdmin ? 'Back to platform' : 'Admin console'}>
+          title={isAdminRoute ? 'Back to platform' : 'Admin console'}>
           
           <ArrowLeftRightIcon className="h-4 w-4 shrink-0" strokeWidth={1.9} />
           {!collapsed &&
           <span className="truncate">
-              {isAdmin ? 'Back to platform' : 'Admin console'}
+              {isAdminRoute ? 'Back to platform' : 'Admin console'}
             </span>
           }
         </NavLink>
+        )}
         <button
           type="button"
           onClick={onToggle}
