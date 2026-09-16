@@ -326,7 +326,7 @@ export function Dashboard() {
                 xKey="date"
                 series={[
                 { key: 'portfolio', label: 'Portfolio' },
-                { key: 'benchmark', label: 'Benchmark', color: '#98A2AF' }]
+                { key: 'benchmark', label: 'Benchmark', color: 'var(--ink-4)' }]
                 }
                 height={264}
                 yTickFormatter={(v) => `${(v / 100000).toFixed(1)}L`}

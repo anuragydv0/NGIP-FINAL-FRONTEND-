@@ -231,7 +231,7 @@ export function DensityToggle({
         onClick={() => onChange(d)}
         className={cx(
           'rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors duration-150 ease-swift',
-          density === d ? 'bg-ink text-white' : 'text-ink-3 hover:text-ink'
+          density === d ? 'bg-ink text-surface' : 'text-ink-3 hover:text-ink'
         )}>
         
           {d}

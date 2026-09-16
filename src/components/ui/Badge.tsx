@@ -57,7 +57,7 @@ export function Pill({
       className={cx(
         'rounded-full border px-3 py-1 text-xs font-medium transition-[background-color,border-color,color] duration-150 ease-swift',
         active ?
-        'border-accent bg-accent text-white' :
+        'border-accent bg-accent text-surface' :
         'border-line-strong bg-surface text-ink-2 hover:border-ink-4 hover:text-ink',
         className
       )}>

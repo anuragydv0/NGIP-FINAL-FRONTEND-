@@ -1,7 +1,8 @@
-﻿import React from 'react';
+import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastProvider } from './components/ui/Toast';
 import { UserProvider } from './contexts/UserContext';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { RequireAdmin } from './components/RequireAdmin';
 import { OrderTicketProvider } from './contexts/OrderTicketContext';
 import { AppShell } from './components/shell/AppShell';
@@ -58,10 +59,11 @@ import {
 export function App() {
   return (
     <BrowserRouter>
-      <UserProvider>
-      <ToastProvider>
-        <OrderTicketProvider>
-          <Routes>
+      <ThemeProvider>
+        <UserProvider>
+        <ToastProvider>
+          <OrderTicketProvider>
+            <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -136,6 +138,7 @@ export function App() {
         </OrderTicketProvider>
       </ToastProvider>
       </UserProvider>
+      </ThemeProvider>
     </BrowserRouter>);
 
 }

@@ -202,7 +202,7 @@ export function Tooltip({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.14, ease: [0.23, 1, 0.32, 1] }}
           className={cx(
-            'pointer-events-none absolute left-1/2 z-50 w-max max-w-[240px] -translate-x-1/2 rounded-md bg-ink px-2.5 py-1.5 text-[11px] font-medium leading-relaxed text-white shadow-pop',
+            'pointer-events-none absolute left-1/2 z-50 w-max max-w-[240px] -translate-x-1/2 rounded-md bg-ink px-2.5 py-1.5 text-[11px] font-medium leading-relaxed text-surface shadow-pop',
             side === 'top' ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
           )}>
           

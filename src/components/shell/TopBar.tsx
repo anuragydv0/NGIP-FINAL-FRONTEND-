@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BellIcon, LogOutIcon, MenuIcon, SearchIcon, SettingsIcon, ShieldCheckIcon, UserIcon } from 'lucide-react';
+import { BellIcon, LogOutIcon, MenuIcon, SearchIcon, SettingsIcon, ShieldCheckIcon, UserIcon, SunIcon, MoonIcon } from 'lucide-react';
 import { Logo } from './Logo';
 import { IconButton } from '../ui/Button';
 import { MenuItem, Popover } from '../ui/Overlay';
 import { notifications } from '../../data/content';
 import { cx } from '../../utils/format';
 import { useUser } from '../../contexts/UserContext';
+import { useTheme } from '../../contexts/ThemeContext';
 export function TopBar({
   onOpenCommand,
   onOpenMobileNav
@@ -15,6 +16,7 @@ export function TopBar({
 
 }: {onOpenCommand: () => void;onOpenMobileNav: () => void;}) {
   const { currentUser } = useUser();
+  const { theme, toggleTheme } = useTheme();
   const initials = currentUser.name.split(" ").map(n => n[0]).join("").substring(0, 2);
   const navigate = useNavigate();
   const unread = notifications.filter((n) => !n.read).length;
@@ -57,11 +59,19 @@ export function TopBar({
           </span>
         </div>
 
+        <IconButton 
+          label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} 
+          onClick={toggleTheme} 
+          className="relative"
+        >
+          {theme === 'dark' ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
+        </IconButton>
+
         <Popover width="w-[340px]" trigger={({
         toggle
       }) => <IconButton label="Notifications" onClick={toggle} className="relative">
               <BellIcon className="h-4 w-4" />
-              {unread > 0 && <span className="num absolute right-1 top-1 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-neg px-1 text-[9px] font-bold tabular-nums text-white">
+              {unread > 0 && <span className="num absolute right-1 top-1 flex h-3.5 min-w-3.5 items-center justify-center rounded-full bg-neg px-1 text-[9px] font-bold tabular-nums text-surface">
                   {unread}
                 </span>}
             </IconButton>}>
@@ -109,7 +119,7 @@ export function TopBar({
         <Popover width="w-56" trigger={({
         toggle
       }) => <button type="button" onClick={toggle} className="ml-1 flex items-center gap-2 rounded-md p-1 pr-2 transition-colors duration-150 ease-swift hover:bg-ink/[0.04]" aria-label="Account menu">
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-[11px] font-semibold text-white">
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-ink text-[11px] font-semibold text-surface">
                 {initials}
               </span>
               <span className="hidden text-left leading-tight lg:block">

@@ -1,45 +1,47 @@
 /** @type {import('tailwindcss').Config} */
-export default {content: [
+export default {
+  darkMode: 'class',
+  content: [
   './index.html',
   './src/**/*.{js,ts,jsx,tsx}'
 ],
   theme: {
     extend: {
       colors: {
-        canvas: '#F4F6F8',
-        surface: '#FFFFFF',
-        subtle: '#FAFBFC',
+        canvas: 'var(--canvas)',
+        surface: 'var(--surface)',
+        subtle: 'var(--subtle)',
         line: {
-          DEFAULT: '#E3E7EC',
-          strong: '#CDD5DE',
+          DEFAULT: 'var(--line)',
+          strong: 'var(--line-strong)',
         },
         ink: {
-          DEFAULT: '#0B1420',
-          2: '#3B4655',
-          3: '#697484',
-          4: '#98A2AF',
+          DEFAULT: 'var(--ink)',
+          2: 'var(--ink-2)',
+          3: 'var(--ink-3)',
+          4: 'var(--ink-4)',
         },
         accent: {
-          DEFAULT: '#0B6E63',
-          hover: '#095A51',
-          soft: '#E5F0EE',
-          line: '#B9D8D3',
+          DEFAULT: 'var(--accent)',
+          hover: 'var(--accent-hover)',
+          soft: 'var(--accent-soft)',
+          line: 'var(--accent-line)',
         },
         pos: {
-          DEFAULT: '#0E8A4F',
-          soft: '#E6F4EC',
+          DEFAULT: 'var(--pos)',
+          soft: 'var(--pos-soft)',
         },
         neg: {
-          DEFAULT: '#C2372C',
-          soft: '#FBEAE8',
+          DEFAULT: 'var(--neg)',
+          soft: 'var(--neg-soft)',
         },
         warn: {
-          DEFAULT: '#A9700D',
-          soft: '#FBF2E1',
+          DEFAULT: 'var(--warn)',
+          soft: 'var(--warn-soft)',
         },
         info: {
-          DEFAULT: '#1F5FA8',
-          soft: '#E9F1FA',
+          DEFAULT: 'var(--info)',
+          soft: 'var(--info-soft)',
         },
       },
       fontFamily: {
@@ -66,7 +68,7 @@ export default {content: [
     },
     borderColor: (theme) => ({
       ...theme('colors'),
-      DEFAULT: '#E3E7EC',
+      DEFAULT: 'var(--line)',
     }),
   },
   plugins: [],

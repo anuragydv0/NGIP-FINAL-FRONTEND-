@@ -106,7 +106,7 @@ export function Pagination({
               className={cx(
                 'num h-7 w-7 rounded text-xs font-medium tabular-nums transition-colors duration-150 ease-swift',
                 p === page ?
-                'bg-ink text-white' :
+                'bg-ink text-surface' :
                 'text-ink-3 hover:bg-ink/[0.05]'
               )}>
               

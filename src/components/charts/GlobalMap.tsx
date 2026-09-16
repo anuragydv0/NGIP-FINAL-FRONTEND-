@@ -96,9 +96,9 @@ export function GlobalMap({
   const fill = (c: Country) => {
     const t = (metricOf(c, mode) - min) / (max - min || 1);
     const score = inverted ? 1 - t : t;
-    if (score > 0.66) return { bg: 'rgba(11,110,99,0.85)', ring: '#0B6E63' };
-    if (score > 0.33) return { bg: 'rgba(31,95,168,0.7)', ring: '#1F5FA8' };
-    return { bg: 'rgba(169,112,13,0.7)', ring: '#A9700D' };
+    if (score > 0.66) return { bg: 'var(--accent)', ring: 'var(--accent)', opacity: 0.85 };
+    if (score > 0.33) return { bg: 'var(--info)', ring: 'var(--info)', opacity: 0.7 };
+    return { bg: 'var(--warn)', ring: 'var(--warn)', opacity: 0.7 };
   };
 
   const radius = (c: Country) => {
@@ -117,7 +117,7 @@ export function GlobalMap({
         role="img"
         aria-label={`World economic map by ${mode}`}>
         
-        <rect x="0" y="0" width={W} height={H} fill="#FAFBFC" />
+        <rect x="0" y="0" width={W} height={H} fill="var(--subtle)" />
         {Array.from({ length: 13 }).map((_, i) =>
         <line
           key={`v${i}`}
@@ -125,7 +125,7 @@ export function GlobalMap({
           y1={0}
           x2={i * W / 12}
           y2={H}
-          stroke="#EDF0F3"
+          stroke="var(--line)"
           strokeWidth={1} />
 
         )}
@@ -136,7 +136,7 @@ export function GlobalMap({
           y1={i * H / 6}
           x2={W}
           y2={i * H / 6}
-          stroke="#EDF0F3"
+          stroke="var(--line)"
           strokeWidth={1} />
 
         )}
@@ -145,7 +145,7 @@ export function GlobalMap({
           y1={H / 2}
           x2={W}
           y2={H / 2}
-          stroke="#DCE2E8"
+          stroke="var(--line-strong)"
           strokeWidth={1}
           strokeDasharray="6 5" />
         
@@ -165,7 +165,7 @@ export function GlobalMap({
               textAnchor="middle"
               fontSize={11}
               letterSpacing="1.6"
-              fill="#C3CAD3"
+              fill="var(--ink-4)"
               fontWeight={600}>
               
               {label}
@@ -194,6 +194,7 @@ export function GlobalMap({
               <circle
                 r={r}
                 fill={f.bg}
+                fillOpacity={f.opacity}
                 stroke={f.ring}
                 strokeWidth={isHover ? 2 : 1}
                 style={{
@@ -205,7 +206,7 @@ export function GlobalMap({
                 textAnchor="middle"
                 fontSize={9.5}
                 fontWeight={600}
-                fill="#3B4655">
+                fill="var(--ink-2)">
                 
                 {c.code}
               </text>
@@ -232,9 +233,9 @@ export function GlobalMap({
       <div className="absolute bottom-2 right-3 flex items-center gap-3 rounded-md border border-line bg-surface/90 px-2.5 py-1.5 text-[10px] font-medium text-ink-3 backdrop-blur">
         <span className="uppercase tracking-wider">{inverted ? 'Lower is better' : 'Higher is better'}</span>
         {[
-        ['#A9700D', 'Low'],
-        ['#1F5FA8', 'Mid'],
-        ['#0B6E63', 'High']].
+        ['var(--warn)', 'Low'],
+        ['var(--info)', 'Mid'],
+        ['var(--accent)', 'High']].
         map(([c, l]) =>
         <span key={l} className="flex items-center gap-1">
             <span

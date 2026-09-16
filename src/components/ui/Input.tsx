@@ -134,7 +134,7 @@ export function Toggle({
         
         <span
           className={cx(
-            'absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform duration-150 ease-swift',
+            'absolute top-0.5 h-4 w-4 rounded-full bg-surface shadow-sm transition-transform duration-150 ease-swift',
             checked ? 'translate-x-[18px]' : 'translate-x-0.5'
           )} />
         

@@ -210,7 +210,7 @@ export function OrderDetail() {
                     className={cx(
                       'relative z-10 flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full border-2',
                       t.done ?
-                      'border-accent bg-accent text-white' :
+                      'border-accent bg-accent text-surface' :
                       t.active ?
                       'border-warn bg-warn-soft text-warn' :
                       'border-line bg-surface text-ink-4'

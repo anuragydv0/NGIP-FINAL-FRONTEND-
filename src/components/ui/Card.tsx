@@ -97,15 +97,15 @@ export function StatCard({
   return (
     <div
       className={cx(
-        'flex flex-col justify-between rounded-lg border border-line bg-surface px-4 py-3.5 shadow-card',
-        emphasis && 'bg-ink text-white border-ink',
+        'flex flex-col justify-between rounded-lg border px-4 py-3.5 shadow-card',
+        emphasis ? 'bg-ink text-surface border-ink' : 'bg-surface border-line',
         className
       )}>
       
       <p
         className={cx(
           'text-[11px] font-medium uppercase tracking-wider',
-          emphasis ? 'text-white/60' : 'text-ink-3'
+          emphasis ? 'text-surface/60' : 'text-ink-3'
         )}>
         
         {label}
@@ -126,7 +126,7 @@ export function StatCard({
         <span
           className={cx(
             'truncate text-xs',
-            emphasis ? 'text-white/60' : 'text-ink-3'
+            emphasis ? 'text-surface/60' : 'text-ink-3'
           )}>
           
             {sub}

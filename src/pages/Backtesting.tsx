@@ -91,8 +91,8 @@ export function Backtesting() {
                   data={result.series}
                   xKey="date"
                   series={[
-                    { key: 'strategy', label: 'Strategy', color: '#14b8a6' },
-                    { key: 'benchmark', label: 'Benchmark', color: '#64748b' }
+                    { key: 'strategy', label: 'Strategy', color: 'var(--accent)' },
+                    { key: 'benchmark', label: 'Benchmark', color: 'var(--ink-4)' }
                   ]}
                   height={320}
                   formatter={(v) => `$${Number(v).toLocaleString()}`}

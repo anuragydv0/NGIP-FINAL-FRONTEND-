@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageBody, PageHeader } from '../components/ui/PageHeader';
 import { Card, CardHeader } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
@@ -31,11 +31,11 @@ export function RiskAnalysis() {
 
   const riskBandColorHex = (band: RiskBand | undefined) => {
     switch (band) {
-      case 'High': return '#C2372C'; // neg
-      case 'Elevated': return '#E08300'; // warn
-      case 'Moderate': return '#0072D4'; // info
-      case 'Low': return '#107c41'; // pos
-      default: return '#0072D4';
+      case 'High': return 'var(--neg)'; // neg
+      case 'Elevated': return 'var(--warn)'; // warn
+      case 'Moderate': return 'var(--info)'; // info
+      case 'Low': return 'var(--pos)'; // pos
+      default: return 'var(--info)';
     }
   };
 
@@ -209,7 +209,7 @@ export function RiskAnalysis() {
                 <AreaSeries
                   data={drawdownSeries}
                   xKey="date"
-                  series={[{ key: 'drawdown', label: 'Drawdown %', color: '#C2372C' }]}
+                  series={[{ key: 'drawdown', label: 'Drawdown %', color: 'var(--neg)' }]}
                   height={260}
                   formatter={(v) => `${Number(v).toFixed(2)}%`}
                 />

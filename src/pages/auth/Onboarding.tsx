@@ -125,7 +125,7 @@ export function Onboarding() {
           value === label ? 'border-accent bg-accent' : 'border-line-strong'
         )}>
         
-            {value === label && <CheckIcon className="h-2.5 w-2.5 text-white" />}
+            {value === label && <CheckIcon className="h-2.5 w-2.5 text-surface" />}
           </span>
           <span>
             <span className="block text-[13px] font-medium text-ink">{label}</span>
@@ -249,7 +249,7 @@ export function Onboarding() {
                       active ? 'border-accent bg-accent' : 'border-line-strong'
                     )}>
                     
-                      {active && <CheckIcon className="h-2.5 w-2.5 text-white" />}
+                      {active && <CheckIcon className="h-2.5 w-2.5 text-surface" />}
                     </span>
                   </button>);
 

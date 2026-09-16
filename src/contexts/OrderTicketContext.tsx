@@ -220,8 +220,8 @@ export function OrderTicketProvider({
                   'rounded-md border py-2.5 text-[13px] font-semibold transition-[background-color,border-color,color] duration-150 ease-swift',
                   side === s ?
                   s === 'BUY' ?
-                  'border-pos bg-pos text-white' :
-                  'border-neg bg-neg text-white' :
+                  'border-pos bg-pos text-surface' :
+                  'border-neg bg-neg text-surface' :
                   'border-line-strong bg-surface text-ink-3 hover:border-ink-4 hover:text-ink'
                 )}>
                 

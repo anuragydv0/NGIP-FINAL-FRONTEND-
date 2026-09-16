@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   ArrowLeftRightIcon,
@@ -44,7 +44,7 @@ function NavRow({
       <span
         className={cx(
           'num ml-auto rounded px-1.5 py-0.5 text-[10px] font-semibold tabular-nums',
-          isActive ? 'bg-accent text-white' : 'bg-ink/[0.06] text-ink-3'
+          isActive ? 'bg-accent text-surface' : 'bg-ink/[0.06] text-ink-3'
         )}>
         
               {item.badge}
@@ -123,7 +123,7 @@ export function Sidebar({
       {(isAdminRoute && userIsAdmin) &&
       <div
         className={cx(
-          'flex items-center gap-2 border-b border-line bg-ink px-3 py-2 text-white',
+          'flex items-center gap-2 border-b border-line bg-ink px-3 py-2 text-surface',
           collapsed && 'justify-center px-0'
         )}>
         

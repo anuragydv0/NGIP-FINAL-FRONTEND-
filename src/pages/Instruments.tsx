@@ -297,7 +297,7 @@ export function Instruments() {
                       className={cx(
                         'rounded p-1.5 transition-colors duration-150 ease-swift',
                         view === id ?
-                        'bg-ink text-white' :
+                        'bg-ink text-surface' :
                         'text-ink-3 hover:text-ink'
                       )}>
                       

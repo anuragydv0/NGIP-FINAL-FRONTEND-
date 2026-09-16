@@ -276,7 +276,7 @@ export function Donut({
           innerRadius={innerRadius}
           outerRadius={outerRadius}
           paddingAngle={1.5}
-          stroke="#fff"
+          stroke="var(--surface)"
           strokeWidth={1.5}
           animationDuration={320}>
           

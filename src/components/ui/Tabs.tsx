@@ -32,7 +32,7 @@ export function Tabs({
           className={cx(
             'whitespace-nowrap rounded px-3 py-1.5 text-xs font-medium transition-colors duration-150 ease-swift',
             value === t.id ?
-            'bg-ink text-white' :
+            'bg-ink text-surface' :
             'text-ink-3 hover:text-ink'
           )}>
           
@@ -114,7 +114,7 @@ export function Segmented({
           'rounded font-medium transition-colors duration-150 ease-swift',
           size === 'xs' ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs',
           value === o ?
-          'bg-ink text-white' :
+          'bg-ink text-surface' :
           'text-ink-3 hover:bg-ink/[0.04] hover:text-ink'
         )}>
         

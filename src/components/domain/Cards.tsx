@@ -131,7 +131,7 @@ export function InstrumentCard({
       <div className="mt-3 flex items-center gap-2">
           <button
           onClick={() => onTrade(instrument)}
-          className="flex-1 rounded-md border border-accent bg-accent px-3 py-1.5 text-xs font-semibold text-white transition-colors duration-150 ease-swift hover:bg-accent-hover">
+          className="flex-1 rounded-md border border-accent bg-accent px-3 py-1.5 text-xs font-semibold text-surface transition-colors duration-150 ease-swift hover:bg-accent-hover">
           
             Trade
           </button>
