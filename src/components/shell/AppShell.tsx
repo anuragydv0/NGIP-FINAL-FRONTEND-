@@ -10,6 +10,7 @@ import {
 import { Sidebar, SidebarNav } from './Sidebar';
 import { TopBar } from './TopBar';
 import { CommandPalette } from './CommandPalette';
+import { Copilot } from './Copilot';
 import { Drawer } from '../ui/Overlay';
 import { adminNav, appNav } from './navigation';
 import { cx } from '../../utils/format';
@@ -25,6 +26,7 @@ const mobileTabs = [
 export function AppShell() {
   const [collapsed, setCollapsed] = React.useState(false);
   const [commandOpen, setCommandOpen] = React.useState(false);
+  const [copilotOpen, setCopilotOpen] = React.useState(false);
   const [mobileNav, setMobileNav] = React.useState(false);
   const { pathname } = useLocation();
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -35,6 +37,10 @@ export function AppShell() {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         setCommandOpen((v) => !v);
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j') {
+        e.preventDefault();
+        setCopilotOpen((v) => !v);
       }
     };
     window.addEventListener('keydown', handler);
@@ -50,6 +56,7 @@ export function AppShell() {
     <div className="flex h-full w-full flex-col bg-canvas">
       <TopBar
         onOpenCommand={() => setCommandOpen(true)}
+        onOpenCopilot={() => setCopilotOpen(true)}
         onOpenMobileNav={() => setMobileNav(true)} />
       
       <div className="flex min-h-0 flex-1">
@@ -100,6 +107,6 @@ export function AppShell() {
       </Drawer>
 
       <CommandPalette open={commandOpen} onClose={() => setCommandOpen(false)} />
+      <Copilot open={copilotOpen} onClose={() => setCopilotOpen(false)} />
     </div>);
-
 }

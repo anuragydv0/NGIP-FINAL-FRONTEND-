@@ -207,7 +207,7 @@ export function Reports() {
               </Button>
             </div>
             {selectedReport === 'portfolio-perf' ? (
-              <DataTable rows={previewData} columns={previewColumns} rowKey={(h) => h.id} />
+              <DataTable rows={previewData || []} columns={previewColumns} rowKey={(h) => h.id} />
             ) : (
               <div className="p-12 text-center">
                 <p className="text-[13px] text-ink-3">Preview mock data not available for this report type. Select "Portfolio Performance Summary".</p>

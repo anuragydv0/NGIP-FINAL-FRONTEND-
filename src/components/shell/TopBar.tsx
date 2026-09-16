@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { BellIcon, LogOutIcon, MenuIcon, SearchIcon, SettingsIcon, ShieldCheckIcon, UserIcon, SunIcon, MoonIcon } from 'lucide-react';
+import { BellIcon, LogOutIcon, MenuIcon, SearchIcon, SettingsIcon, ShieldCheckIcon, UserIcon, SunIcon, MoonIcon, SparklesIcon } from 'lucide-react';
 import { Logo } from './Logo';
 import { IconButton } from '../ui/Button';
 import { MenuItem, Popover } from '../ui/Overlay';
@@ -41,11 +41,9 @@ function MarketClock() {
 
 export function TopBar({
   onOpenCommand,
+  onOpenCopilot,
   onOpenMobileNav
-
-
-
-}: {onOpenCommand: () => void;onOpenMobileNav: () => void;}) {
+}: {onOpenCommand: () => void; onOpenCopilot: () => void; onOpenMobileNav: () => void;}) {
   const { currentUser } = useUser();
   const { theme, toggleTheme } = useTheme();
   const initials = currentUser.name.split(" ").map(n => n[0]).join("").substring(0, 2);
@@ -78,6 +76,14 @@ export function TopBar({
         </IconButton>
 
         <MarketClock />
+        
+        <IconButton 
+          label="Open Copilot (Cmd+J)" 
+          onClick={onOpenCopilot} 
+          className="relative text-accent"
+        >
+          <SparklesIcon className="h-4 w-4" />
+        </IconButton>
 
         <IconButton 
           label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} 
