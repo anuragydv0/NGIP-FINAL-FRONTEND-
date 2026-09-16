@@ -29,6 +29,7 @@ interface DataTableProps<T> {
   className?: string;
   maxHeight?: string;
   defaultSort?: {key: string;dir: 'asc' | 'desc';};
+  stackedOnMobile?: boolean;
 }
 
 const hideMap: Record<string, string> = {
@@ -51,7 +52,8 @@ export function DataTable<T>({
   loading,
   className,
   maxHeight,
-  defaultSort
+  defaultSort,
+  stackedOnMobile = true
 }: DataTableProps<T>) {
   const [sort, setSort] = React.useState<{key: string;dir: 'asc' | 'desc';} | null>(
     defaultSort ?? null
@@ -98,11 +100,12 @@ export function DataTable<T>({
       className={cx('ngip-scroll overflow-auto', className)}
       style={maxHeight ? { maxHeight } : undefined}>
       
-      <table className="w-full border-collapse">
+      <table className={cx("w-full border-collapse", stackedOnMobile && "block md:table")}>
         <thead
           className={cx(
             'bg-subtle',
-            stickyHeader && 'sticky top-0 z-10'
+            stickyHeader && 'sticky top-0 z-10',
+            stackedOnMobile && "hidden md:table-header-group"
           )}>
           
           <tr className="border-b border-line">
@@ -163,7 +166,7 @@ export function DataTable<T>({
             })}
           </tr>
         </thead>
-        <tbody className="divide-y divide-line">
+        <tbody className={cx("divide-y divide-line", stackedOnMobile && "block md:table-row-group")}>
           {sorted.map((row, i) => {
             const key = rowKey(row);
             const selected = selectedKeys?.includes(key);
@@ -174,11 +177,12 @@ export function DataTable<T>({
                 className={cx(
                   'transition-colors duration-100 ease-swift',
                   onRowClick && 'cursor-pointer',
-                  selected ? 'bg-accent-soft/60' : 'hover:bg-subtle'
+                  selected ? 'bg-accent-soft/60' : 'hover:bg-subtle',
+                  stackedOnMobile && 'block md:table-row p-3 md:p-0 mb-3 md:mb-0 border border-line md:border-0 rounded-lg md:rounded-none bg-surface md:bg-transparent last:mb-0'
                 )}>
                 
                 {onToggleRow &&
-                <td className={cx(cellPad, 'w-9')} onClick={(e) => e.stopPropagation()}>
+                <td className={cx(cellPad, 'w-9', stackedOnMobile && 'md:table-cell')} onClick={(e) => e.stopPropagation()}>
                     <input
                     type="checkbox"
                     checked={!!selected}
@@ -200,10 +204,18 @@ export function DataTable<T>({
                     col.align === 'center' ?
                     'text-center' :
                     'text-left',
-                    col.hideBelow && hideMap[col.hideBelow]
+                    col.hideBelow && hideMap[col.hideBelow],
+                    stackedOnMobile && 'flex items-center justify-between md:table-cell border-b border-line/50 md:border-b-0 last:border-b-0 px-1 py-1.5 md:py-2.5 md:px-3.5'
                   )}>
                   
-                    {col.render(row, i)}
+                    {stackedOnMobile && (
+                      <span className="md:hidden text-[11px] font-semibold uppercase tracking-wider text-ink-3">
+                        {col.header}
+                      </span>
+                    )}
+                    <span className={cx(stackedOnMobile && "text-right md:text-left")}>
+                      {col.render(row, i)}
+                    </span>
                   </td>
                 )}
               </tr>);

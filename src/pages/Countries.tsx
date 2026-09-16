@@ -22,6 +22,7 @@ import {
 '../components/ui/Table';
 import { EmptyState } from '../components/ui/States';
 import { CountryCard } from '../components/domain/Cards';
+import { LiveCell } from '../contexts/LiveDataContext';
 import { countries, regions } from '../data/countries';
 import { Country } from '../types';
 import { cx, compact, pct } from '../utils/format';
@@ -99,13 +100,13 @@ export function Countries() {
     render: (c) =>
     <Link
       to={`/app/countries/${c.id}`}
-      className="group flex items-center gap-2.5">
+      className="group flex items-center gap-3">
       
-          <span className="text-base" aria-hidden>
+          <span className="text-xl leading-none shadow-sm" aria-hidden>
             {c.flag}
           </span>
-          <span className="min-w-0">
-            <span className="block truncate font-medium text-ink transition-colors duration-150 ease-swift group-hover:text-accent">
+          <span className="flex flex-col">
+            <span className="font-medium text-ink transition-colors duration-150 ease-swift group-hover:text-accent">
               {c.name}
             </span>
             <span className="block text-[11px] text-ink-4">
@@ -123,9 +124,7 @@ export function Countries() {
     sortValue: (c) => c.cgi,
     render: (c) =>
     <span className="flex flex-col items-end">
-          <span className="num font-semibold tabular-nums text-ink">
-            {c.cgi.toFixed(1)}
-          </span>
+          <LiveCell type="country" id={c.id} fallback={c.cgi} precision={1} />
           <Delta value={c.cgiDelta} suffix="" size="xs" showIcon={false} />
         </span>
 

@@ -5,6 +5,7 @@ import { UserProvider } from './contexts/UserContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { RequireAdmin } from './components/RequireAdmin';
 import { OrderTicketProvider } from './contexts/OrderTicketContext';
+import { LiveDataProvider } from './contexts/LiveDataContext';
 import { AppShell } from './components/shell/AppShell';
 
 import { Landing } from './pages/Landing';
@@ -59,6 +60,7 @@ export function App() {
       <ThemeProvider>
         <UserProvider>
         <ToastProvider>
+          <LiveDataProvider>
           <OrderTicketProvider>
             <Routes>
             <Route path="/" element={<Landing />} />
@@ -132,9 +134,10 @@ export function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </OrderTicketProvider>
-      </ToastProvider>
-      </UserProvider>
+          </OrderTicketProvider>
+          </LiveDataProvider>
+        </ToastProvider>
+        </UserProvider>
       </ThemeProvider>
     </BrowserRouter>);
 

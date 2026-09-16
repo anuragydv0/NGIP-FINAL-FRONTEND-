@@ -18,6 +18,7 @@ import { InstrumentCard } from '../components/domain/Cards';
 import { instruments, instrumentTypes } from '../data/instruments';
 import { countries, regions } from '../data/countries';
 import { useOrderTicket } from '../contexts/OrderTicketContext';
+import { LiveCell } from '../contexts/LiveDataContext';
 import { Instrument } from '../types';
 import { cx, num, pct } from '../utils/format';
 
@@ -96,8 +97,7 @@ export function Instruments() {
     align: 'right',
     sortable: true,
     sortValue: (i) => i.price,
-    render: (i) =>
-    <span className="num font-medium tabular-nums">{num(i.price)}</span>
+    render: (i) => <LiveCell type="instrument" id={i.id} fallback={i.price} />
 
   },
   {

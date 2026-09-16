@@ -8,6 +8,37 @@ import { notifications } from '../../data/content';
 import { cx } from '../../utils/format';
 import { useUser } from '../../contexts/UserContext';
 import { useTheme } from '../../contexts/ThemeContext';
+
+function MarketClock() {
+  const [time, setTime] = React.useState(new Date());
+  React.useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+  const formatter = new Intl.DateTimeFormat('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+  const timeStr = formatter.format(time);
+
+  return (
+    <div className="mr-1 hidden items-center gap-2 rounded-md border border-line bg-subtle px-2.5 py-1.5 xl:flex">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pos opacity-60 duration-1000" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-pos" />
+      </span>
+      <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-2">
+        Markets open
+      </span>
+      <span className="num text-[11px] tabular-nums text-ink-4">
+        IST {timeStr}
+      </span>
+    </div>
+  );
+}
+
 export function TopBar({
   onOpenCommand,
   onOpenMobileNav
@@ -46,18 +77,7 @@ export function TopBar({
           <SearchIcon className="h-4 w-4" />
         </IconButton>
 
-        <div className="mr-1 hidden items-center gap-2 rounded-md border border-line bg-subtle px-2.5 py-1.5 xl:flex">
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full rounded-full bg-pos opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-pos" />
-          </span>
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-2">
-            Markets open
-          </span>
-          <span className="num text-[11px] tabular-nums text-ink-4">
-            IST 15:24
-          </span>
-        </div>
+        <MarketClock />
 
         <IconButton 
           label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'} 

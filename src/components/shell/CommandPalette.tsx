@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { CornerDownLeftIcon, SearchIcon } from 'lucide-react';
 import { countries } from '../../data/countries';
 import { instruments } from '../../data/instruments';
+import { news, research } from '../../data/content';
 import { commandGroups } from './navigation';
 import { cx } from '../../utils/format';
 
@@ -19,9 +20,6 @@ interface Entry {
 export function CommandPalette({
   open,
   onClose
-
-
-
 }: {open: boolean;onClose: () => void;}) {
   const navigate = useNavigate();
   const [query, setQuery] = React.useState('');
@@ -53,7 +51,23 @@ export function CommandPalette({
       to: `/app/instruments/${i.id}`,
       glyph: i.flag
     }));
-    return [...nav, ...countryEntries, ...instrumentEntries];
+    const newsEntries: Entry[] = news.map((n) => ({
+      id: `news-${n.id}`,
+      label: n.headline,
+      hint: `${n.source} · ${n.time}`,
+      group: 'News',
+      to: `/app/news`, // Navigate to news page (could add anchor or ID later)
+      glyph: '📰'
+    }));
+    const researchEntries: Entry[] = research.map((r) => ({
+      id: `res-${r.id}`,
+      label: r.title,
+      hint: `${r.author} · ${r.date}`,
+      group: 'Research',
+      to: `/app/research/${r.id}`,
+      glyph: '📝'
+    }));
+    return [...nav, ...countryEntries, ...instrumentEntries, ...newsEntries, ...researchEntries];
   }, []);
 
   const results = React.useMemo(() => {

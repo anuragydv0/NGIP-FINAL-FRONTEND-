@@ -11,6 +11,7 @@ import { AreaSeries, Donut, palette } from '../components/charts/Charts';
 import { GlobalMap, MapMode } from '../components/charts/GlobalMap';
 import { DataTable, Column } from '../components/ui/Table';
 import { NewsCard } from '../components/domain/Cards';
+import { LiveCell } from '../contexts/LiveDataContext';
 import { countries, regionAggregates } from '../data/countries';
 import { globalGrowthIndex } from '../data/markets';
 import {
@@ -490,8 +491,8 @@ export function Dashboard() {
                       </span>
                       <Sparkline data={ins.trend} width={48} height={18} />
                       <span className="w-20 text-right">
-                        <span className="num block text-xs font-medium tabular-nums text-ink">
-                          {num(ins.price)}
+                        <span className="block text-xs">
+                          <LiveCell type="instrument" id={ins.id} fallback={ins.price} />
                         </span>
                         <Delta value={ins.changePct} size="xs" showIcon={false} />
                       </span>

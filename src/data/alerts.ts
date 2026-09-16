@@ -28,6 +28,6 @@ export const mockAlerts: AlertRule[] = Array.from({ length: 7 }).map((_, i) => {
     conditionType,
     threshold: isCountry ? '< 80' : '±5%',
     status: random() > 0.8 ? 'Triggered' : (random() > 0.7 ? 'Paused' : 'Active'),
-    createdAt: new Date(Date.now() - random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
+    createdAt: new Date(1786536000000 - random() * 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]
   };
 });
