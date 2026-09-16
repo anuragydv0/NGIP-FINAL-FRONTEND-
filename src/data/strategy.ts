@@ -1,12 +1,12 @@
-﻿import { Strategy } from '../types';
+import { Strategy } from '../types';
 
-export const savedStrategies: Strategy[] = [
+const BASE_TIME = new Date('2026-09-13T12:00:00Z').getTime();
+
+const seedStrategies = [
   {
-    id: 's1',
     name: 'High Growth Asia',
     description: 'Concentrated exposure in high-growth APAC emerging markets.',
     creator: 'Admin',
-    updatedAt: '2026-08-14',
     allocations: [
       { id: 'in', name: 'India', weight: 45 },
       { id: 'vn', name: 'Vietnam', weight: 35 },
@@ -14,11 +14,9 @@ export const savedStrategies: Strategy[] = [
     ]
   },
   {
-    id: 's2',
     name: 'Global Value Dividend',
     description: 'Developed market equities with strong dividend yield characteristics.',
     creator: 'Quant Team',
-    updatedAt: '2026-09-02',
     allocations: [
       { id: 'us', name: 'United States', weight: 40 },
       { id: 'de', name: 'Germany', weight: 25 },
@@ -27,11 +25,9 @@ export const savedStrategies: Strategy[] = [
     ]
   },
   {
-    id: 's3',
     name: 'Resource Independence',
     description: 'Net exporters of critical minerals and energy.',
     creator: 'Commodities Desk',
-    updatedAt: '2026-09-10',
     allocations: [
       { id: 'au', name: 'Australia', weight: 30 },
       { id: 'br', name: 'Brazil', weight: 30 },
@@ -40,3 +36,9 @@ export const savedStrategies: Strategy[] = [
     ]
   }
 ];
+
+export const savedStrategies: Strategy[] = seedStrategies.map((s, i) => {
+  const d = new Date(BASE_TIME - (i * 9 + 3) * 86400000);
+  const updatedAt = d.toISOString().split('T')[0];
+  return { ...s, id: `s${i + 1}`, updatedAt };
+});

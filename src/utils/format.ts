@@ -55,3 +55,14 @@ export function toneClass(value: number): string {
 export function cx(...classes: (string | false | null | undefined)[]): string {
   return classes.filter(Boolean).join(' ');
 }
+
+export function formatRelativeTime(time: number): string {
+  const diff = Date.now() - time;
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  if (days > 0) return `${days}d ago`;
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+  if (hours > 0) return `${hours}h ago`;
+  const minutes = Math.floor(diff / (1000 * 60));
+  if (minutes > 0) return `${minutes}m ago`;
+  return 'Just now';
+}

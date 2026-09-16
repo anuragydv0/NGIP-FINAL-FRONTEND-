@@ -43,18 +43,15 @@ import { AdminDashboard, AdminUsers, AdminCountries, AdminEconomicData, AdminCGI
 import { StrategyBuilder } from './pages/Strategy';
 import { Backtesting } from './pages/Backtesting';
 
-import {
-  Alerts,
-  NotificationsPage,
-  AIPortfolioAnalyst,
-  AIResearch,
-  Profile,
-  Reports,
-  ScenarioAnalysis,
-  Security,
-  Settings,
-   } from
-'./pages/Pending';
+import { Alerts } from './pages/Alerts';
+import { NotificationsPage } from './pages/NotificationsPage';
+import { Profile } from './pages/Profile';
+import { Settings } from './pages/Settings';
+import { Security } from './pages/Security';
+import { Reports } from './pages/Reports';
+import { ScenarioAnalysis } from './pages/ScenarioAnalysis';
+import { AIResearch } from './pages/AIResearch';
+import { AIPortfolioAnalyst } from './pages/AIPortfolioAnalyst';
 
 export function App() {
   return (

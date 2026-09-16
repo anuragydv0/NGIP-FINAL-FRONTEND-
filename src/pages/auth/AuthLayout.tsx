@@ -16,7 +16,7 @@ export function AuthLayout({
 }: {title: string;subtitle?: string;children: React.ReactNode;footer?: React.ReactNode;}) {
   return (
     <div className="grid min-h-full w-full lg:grid-cols-[1fr_minmax(0,520px)]">
-      <aside className="hidden flex-col justify-between bg-ink px-12 py-10 lg:flex">
+      <aside className="hidden flex-col justify-between bg-[#0B1420] px-12 py-10 lg:flex">
         <Link to="/" aria-label="NGIP home">
           <Logo tone="light" subtitle="Nation Growth Investment Platform" />
         </Link>

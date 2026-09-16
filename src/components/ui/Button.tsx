@@ -21,9 +21,9 @@ const variants: Record<Variant, string> = {
   ghost:
   'bg-transparent text-ink-2 border border-transparent hover:bg-ink/[0.04] hover:text-ink disabled:text-ink-4',
   danger:
-  'bg-neg text-surface border border-neg hover:bg-[#A82C22] hover:border-[#A82C22]',
+  'bg-neg text-surface border border-neg hover:bg-neg/90 hover:border-neg/90',
   success:
-  'bg-pos text-surface border border-pos hover:bg-[#0B7343] hover:border-[#0B7343]',
+  'bg-pos text-surface border border-pos hover:bg-pos/90 hover:border-pos/90',
   link: 'bg-transparent border border-transparent text-accent hover:text-accent-hover hover:underline underline-offset-4 px-0'
 };
 

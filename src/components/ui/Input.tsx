@@ -128,16 +128,14 @@ export function Toggle({
         aria-label={label}
         onClick={() => onChange(!checked)}
         className={cx(
-          'relative mt-0.5 h-5 w-9 shrink-0 rounded-full transition-colors duration-150 ease-swift',
-          checked ? 'bg-accent' : 'bg-ink/20'
+          'relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none',
+          checked ? 'bg-accent' : 'bg-line-strong'
         )}>
-        
         <span
           className={cx(
-            'absolute top-0.5 h-4 w-4 rounded-full bg-surface shadow-sm transition-transform duration-150 ease-swift',
-            checked ? 'translate-x-[18px]' : 'translate-x-0.5'
+            'pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out',
+            checked ? 'translate-x-4' : 'translate-x-0'
           )} />
-        
       </button>
     </label>);
 

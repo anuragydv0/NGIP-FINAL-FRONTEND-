@@ -26,18 +26,18 @@ import {
 'recharts';
 
 export const palette = [
-'#0B6E63',
-'#1F5FA8',
-'#A9700D',
-'#6B4EA8',
-'#0E8A4F',
-'#B0563C',
-'#3B7A8C',
-'#8A6D3B'];
+'var(--accent)',
+'var(--info)',
+'var(--warn)',
+'var(--ink-2)',
+'var(--pos)',
+'var(--neg)',
+'var(--ink-3)',
+'var(--accent-hover)'];
 
 
 const axis = {
-  stroke: '#98A2AF',
+  stroke: 'var(--ink-4)',
   fontSize: 11,
   tickLine: false,
   axisLine: false
@@ -118,7 +118,7 @@ export function AreaSeries({
             </linearGradient>
           )}
         </defs>
-        <CartesianGrid stroke="#EDF0F3" vertical={false} />
+        <CartesianGrid stroke="var(--line)" vertical={false} />
         <XAxis dataKey={xKey} {...axis} minTickGap={24} />
         <YAxis
           {...axis}
@@ -166,7 +166,7 @@ export function LineSeries({
   return (
     <ResponsiveContainer width="100%" height={height}>
       <LineChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
-        <CartesianGrid stroke="#EDF0F3" vertical={false} />
+        <CartesianGrid stroke="var(--line)" vertical={false} />
         <XAxis dataKey={xKey} {...axis} minTickGap={20} />
         <YAxis {...axis} width={48} tickFormatter={yTickFormatter} domain={['auto', 'auto']} />
         <Tooltip content={<TooltipBox formatter={formatter} />} />
@@ -221,7 +221,7 @@ export function BarSeries({
         margin={{ top: 8, right: 12, bottom: 0, left: vertical ? 8 : 0 }}
         barCategoryGap={vertical ? '22%' : '32%'}>
         
-        <CartesianGrid stroke="#EDF0F3" vertical={vertical} horizontal={!vertical} />
+        <CartesianGrid stroke="var(--line)" vertical={vertical} horizontal={!vertical} />
         {vertical ?
         <>
             <XAxis type="number" {...axis} />
@@ -302,14 +302,14 @@ export function RadarScore({
   return (
     <ResponsiveContainer width="100%" height={height}>
       <RadarChart data={data} outerRadius="72%">
-        <PolarGrid stroke="#E3E7EC" />
+        <PolarGrid stroke="var(--line-strong)" />
         <PolarAngleAxis
           dataKey="label"
-          tick={{ fill: '#697484', fontSize: 10 }} />
+          tick={{ fill: 'var(--ink-3)', fontSize: 10 }} />
         
         <PolarRadiusAxis
           domain={[0, 100]}
-          tick={{ fill: '#98A2AF', fontSize: 9 }}
+          tick={{ fill: 'var(--ink-4)', fontSize: 9 }}
           axisLine={false} />
         
         <Tooltip content={<TooltipBox />} />
@@ -344,7 +344,7 @@ export function ScatterPlot({
   return (
     <ResponsiveContainer width="100%" height={height}>
       <ScatterChart margin={{ top: 12, right: 16, bottom: 20, left: 0 }}>
-        <CartesianGrid stroke="#EDF0F3" />
+        <CartesianGrid stroke="var(--line)" />
         <XAxis
           type="number"
           dataKey="x"
@@ -354,7 +354,7 @@ export function ScatterPlot({
             value: xLabel,
             position: 'insideBottom',
             offset: -12,
-            fill: '#697484',
+            fill: 'var(--ink-3)',
             fontSize: 11
           }} />
         
@@ -368,7 +368,7 @@ export function ScatterPlot({
             value: yLabel,
             angle: -90,
             position: 'insideLeft',
-            fill: '#697484',
+            fill: 'var(--ink-3)',
             fontSize: 11
           }} />
         
@@ -392,7 +392,7 @@ export function ScatterPlot({
 
           }} />
         
-        <Scatter data={data} fill="#0B6E63" fillOpacity={0.65} animationDuration={320} />
+        <Scatter data={data} fill="var(--accent)" fillOpacity={0.65} animationDuration={320} />
       </ScatterChart>
     </ResponsiveContainer>);
 

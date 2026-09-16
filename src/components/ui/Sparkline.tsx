@@ -31,7 +31,7 @@ export function Sparkline({
   const resolved =
   tone ?? (data[data.length - 1] >= data[0] ? 'pos' : 'neg');
   const stroke =
-  resolved === 'pos' ? '#0E8A4F' : resolved === 'neg' ? '#C2372C' : '#0B6E63';
+  resolved === 'pos' ? 'var(--pos)' : resolved === 'neg' ? 'var(--neg)' : 'var(--accent)';
   const id = React.useId();
 
   return (
