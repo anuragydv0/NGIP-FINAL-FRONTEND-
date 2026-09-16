@@ -230,25 +230,21 @@ export function DataTable<T>({
 export function DensityToggle({
   density,
   onChange
-
-
-
 }: {density: Density;onChange: (d: Density) => void;}) {
   return (
-    <div className="inline-flex rounded-md border border-line-strong bg-surface p-0.5">
+    <div className="inline-flex rounded-full bg-ink/[0.06] p-1 shadow-inner">
       {(['comfortable', 'compact'] as Density[]).map((d) =>
       <button
         key={d}
         type="button"
         onClick={() => onChange(d)}
         className={cx(
-          'rounded px-2 py-1 text-[11px] font-medium capitalize transition-colors duration-150 ease-swift',
-          density === d ? 'bg-ink text-surface' : 'text-ink-3 hover:text-ink'
+          'rounded-full px-2.5 py-1 text-[11px] font-medium capitalize transition-all duration-200 ease-swift',
+          density === d ? 'bg-surface text-ink shadow-sm ring-1 ring-ink/[0.04]' : 'text-ink-3 hover:text-ink hover:bg-ink/[0.02]'
         )}>
         
           {d}
         </button>
       )}
     </div>);
-
 }

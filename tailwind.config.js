@@ -52,15 +52,16 @@ export default {
         '2xs': ['10px', { lineHeight: '14px', letterSpacing: '0.04em' }],
       },
       borderRadius: {
-        DEFAULT: '6px',
-        md: '6px',
-        lg: '8px',
-        xl: '10px',
+        DEFAULT: '8px',
+        md: '8px',
+        lg: '12px',
+        xl: '16px',
+        '2xl': '20px',
       },
       boxShadow: {
-        card: '0 1px 2px rgba(11, 20, 32, 0.04)',
-        raised: '0 4px 16px -4px rgba(11, 20, 32, 0.12), 0 1px 2px rgba(11,20,32,0.04)',
-        pop: '0 12px 40px -8px rgba(11, 20, 32, 0.22), 0 2px 6px rgba(11,20,32,0.06)',
+        card: '0 2px 8px rgba(11, 20, 32, 0.04), 0 1px 2px rgba(11, 20, 32, 0.02)',
+        raised: '0 8px 24px -4px rgba(11, 20, 32, 0.08), 0 4px 8px -2px rgba(11, 20, 32, 0.04)',
+        pop: '0 16px 48px -12px rgba(11, 20, 32, 0.15), 0 8px 16px -4px rgba(11, 20, 32, 0.05)',
       },
       transitionTimingFunction: {
         swift: 'cubic-bezier(0.23, 1, 0.32, 1)',

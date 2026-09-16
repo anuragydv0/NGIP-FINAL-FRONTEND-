@@ -66,10 +66,20 @@ body,
 }
 body {
   background-color: var(--canvas);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 0, 0, 0.015), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(0, 0, 0, 0.01), transparent 25%);
   color: var(--ink);
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.015), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.01), transparent 25%);
 }
 .num {
   font-variant-numeric: tabular-nums;

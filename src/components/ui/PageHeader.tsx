@@ -49,33 +49,33 @@ export function PageHeader({
   return (
     <header
       className={cx(
-        'border-b border-line bg-surface px-5 pt-4 lg:px-7',
-        tabs ? 'pb-0' : 'pb-4',
+        'border-b border-line bg-surface/80 backdrop-blur-md px-5 pt-3 lg:px-7',
+        tabs ? 'pb-0' : 'pb-3',
         className
       )}>
       
       {breadcrumbs &&
-      <div className="mb-2">
+      <div className="mb-1.5">
           <Breadcrumbs items={breadcrumbs} />
         </div>
       }
-      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
-        <div className="min-w-0">
-          <h1 className="text-[19px] font-semibold leading-tight tracking-tight text-ink lg:text-[21px]">
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+        <div className="min-w-0 flex-1">
+          <h1 className="text-[15px] font-semibold tracking-tight text-ink">
             {title}
           </h1>
           {subtitle &&
-          <p className="mt-1 max-w-2xl text-[13px] leading-relaxed text-ink-3">
+          <p className="mt-0.5 max-w-2xl text-[12px] leading-relaxed text-ink-3">
               {subtitle}
             </p>
           }
-          {meta && <div className="mt-2.5">{meta}</div>}
+          {meta && <div className="mt-2">{meta}</div>}
         </div>
         {actions &&
-        <div className="flex flex-wrap items-center gap-2">{actions}</div>
+        <div className="flex shrink-0 items-center gap-1.5">{actions}</div>
         }
       </div>
-      {tabs && <div className="mt-4">{tabs}</div>}
+      {tabs && <div className="mt-3">{tabs}</div>}
     </header>);
 
 }

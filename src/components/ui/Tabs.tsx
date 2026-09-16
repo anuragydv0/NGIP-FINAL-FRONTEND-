@@ -19,7 +19,7 @@ export function Tabs({
       <div
         role="tablist"
         className={cx(
-          'no-scrollbar inline-flex overflow-x-auto rounded-md border border-line-strong bg-surface p-0.5',
+          'no-scrollbar inline-flex overflow-x-auto rounded-full bg-ink/[0.06] p-1 shadow-inner',
           className
         )}>
         
@@ -30,15 +30,15 @@ export function Tabs({
           aria-selected={value === t.id}
           onClick={() => onChange(t.id)}
           className={cx(
-            'whitespace-nowrap rounded px-3 py-1.5 text-xs font-medium transition-colors duration-150 ease-swift',
+            'whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-200 ease-swift',
             value === t.id ?
-            'bg-ink text-surface' :
+            'bg-surface text-ink shadow-sm ring-1 ring-ink/[0.04]' :
             'text-ink-3 hover:text-ink'
           )}>
           
             {t.label}
             {t.count !== undefined &&
-          <span className="num ml-1.5 tabular-nums opacity-60">{t.count}</span>
+          <span className={cx("num ml-1.5 tabular-nums", value === t.id ? "text-ink-3" : "opacity-60")}>{t.count}</span>
           }
           </button>
         )}
@@ -90,17 +90,11 @@ export function Segmented({
   onChange,
   className,
   size = 'sm'
-
-
-
-
-
-
 }: {options: string[];value: string;onChange: (v: string) => void;className?: string;size?: 'xs' | 'sm';}) {
   return (
     <div
       className={cx(
-        'inline-flex rounded-md border border-line-strong bg-surface p-0.5',
+        'inline-flex rounded-full bg-ink/[0.06] p-1 shadow-inner',
         className
       )}>
       
@@ -111,16 +105,15 @@ export function Segmented({
         onClick={() => onChange(o)}
         aria-pressed={value === o}
         className={cx(
-          'rounded font-medium transition-colors duration-150 ease-swift',
-          size === 'xs' ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-1 text-xs',
+          'rounded-full font-medium transition-all duration-200 ease-swift',
+          size === 'xs' ? 'px-2.5 py-0.5 text-[11px]' : 'px-3 py-1 text-xs',
           value === o ?
-          'bg-ink text-surface' :
-          'text-ink-3 hover:bg-ink/[0.04] hover:text-ink'
+          'bg-surface text-ink shadow-sm ring-1 ring-ink/[0.04]' :
+          'text-ink-3 hover:text-ink hover:bg-ink/[0.02]'
         )}>
         
           {o}
         </button>
       )}
     </div>);
-
 }

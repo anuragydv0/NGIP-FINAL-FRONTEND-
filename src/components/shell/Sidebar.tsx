@@ -115,7 +115,7 @@ export function Sidebar({
   return (
     <aside
       className={cx(
-        'hidden shrink-0 flex-col border-r border-line bg-surface lg:flex',
+        'hidden shrink-0 flex-col border-r border-line bg-surface/80 backdrop-blur-xl lg:flex',
         'transition-[width] duration-200 ease-swift',
         collapsed ? 'w-[60px]' : 'w-[228px]'
       )}>
