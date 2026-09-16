@@ -44,18 +44,18 @@ export function Modal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
           onClick={onClose}
-          className="absolute inset-0 bg-ink/40 backdrop-blur-[1px]" />
+          className="absolute inset-0 bg-ink/30 backdrop-blur-sm" />
         
           <motion.div
           role="dialog"
           aria-modal="true"
           aria-label={title}
-          initial={{ opacity: 0, scale: 0.97, y: 8 }}
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.98, y: 4 }}
+          exit={{ opacity: 0, scale: 0.98, y: 8 }}
           transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
           className={cx(
-            'relative w-full rounded-xl border border-line bg-surface shadow-pop',
+            'relative w-full rounded-2xl border border-line bg-surface/90 backdrop-blur-2xl shadow-pop',
             width
           )}>
           
@@ -116,7 +116,7 @@ export function Drawer({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
           onClick={onClose}
-          className="absolute inset-0 bg-ink/40" />
+          className="absolute inset-0 bg-ink/30 backdrop-blur-sm" />
         
           <motion.aside
           role="dialog"
@@ -135,9 +135,9 @@ export function Drawer({
           }
           transition={{ duration: 0.26, ease: [0.23, 1, 0.32, 1] }}
           className={cx(
-            'absolute flex flex-col bg-surface shadow-pop',
+            'absolute flex flex-col bg-surface/90 backdrop-blur-2xl shadow-pop',
             isBottom ?
-            'inset-x-0 bottom-0 max-h-[85vh] rounded-t-xl border-t border-line' :
+            'inset-x-0 bottom-0 max-h-[85vh] rounded-t-2xl border-t border-line' :
             cx(
               'inset-y-0 border-line',
               side === 'right' ? 'right-0 border-l' : 'left-0 border-r',
@@ -202,7 +202,7 @@ export function Tooltip({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.14, ease: [0.23, 1, 0.32, 1] }}
           className={cx(
-            'pointer-events-none absolute left-1/2 z-50 w-max max-w-[240px] -translate-x-1/2 rounded-md bg-ink px-2.5 py-1.5 text-[11px] font-medium leading-relaxed text-surface shadow-pop',
+            'pointer-events-none absolute left-1/2 z-50 w-max max-w-[240px] -translate-x-1/2 rounded-md bg-ink/90 backdrop-blur-md px-2.5 py-1.5 text-[11px] font-medium leading-relaxed text-surface shadow-pop',
             side === 'top' ? 'bottom-full mb-1.5' : 'top-full mt-1.5'
           )}>
           
@@ -248,7 +248,7 @@ export function Popover({
           exit={{ opacity: 0, y: -2, scale: 0.99 }}
           transition={{ duration: 0.16, ease: [0.23, 1, 0.32, 1] }}
           className={cx(
-            'absolute z-40 mt-2 origin-top rounded-lg border border-line bg-surface p-1.5 shadow-pop',
+            'absolute z-40 mt-2 origin-top rounded-xl border border-line bg-surface/90 backdrop-blur-2xl p-1.5 shadow-pop',
             align === 'right' ? 'right-0' : 'left-0',
             width
           )}>

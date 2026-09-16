@@ -49,7 +49,7 @@ export function TopBar({
   const initials = currentUser.name.split(" ").map(n => n[0]).join("").substring(0, 2);
   const navigate = useNavigate();
   const unread = notifications.filter((n) => !n.read).length;
-  return <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-line bg-surface/80 backdrop-blur-xl px-3 lg:px-4">
+  return <header className="sticky top-0 z-30 flex h-16 shrink-0 items-center gap-4 bg-surface/80 backdrop-blur-2xl px-4 lg:px-6">
       <button type="button" onClick={onOpenMobileNav} aria-label="Open navigation" className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-ink-2 hover:bg-ink/[0.05] lg:hidden">
         <MenuIcon className="h-4.5 w-4.5" />
       </button>

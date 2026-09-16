@@ -61,7 +61,7 @@ export function PageHeader({
       }
       <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
         <div className="min-w-0 flex-1">
-          <h1 className="text-[15px] font-semibold tracking-tight text-ink">
+          <h1 className="text-xl font-bold tracking-tight text-ink">
             {title}
           </h1>
           {subtitle &&

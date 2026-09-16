@@ -7,16 +7,14 @@ import { Delta } from './Badge';
 export function Card({
   children,
   className,
-  padded = false
-
-
-
-
-}: {children: React.ReactNode;className?: string;padded?: boolean;}) {
+  padded = false,
+  glass = false
+}: {children: React.ReactNode;className?: string;padded?: boolean;glass?: boolean;}) {
   return (
     <section
       className={cx(
-        'rounded-lg border border-line bg-surface shadow-card',
+        'rounded-xl border border-line shadow-card transition-shadow duration-200 ease-swift hover:shadow-raised',
+        glass ? 'bg-surface/80 backdrop-blur-xl' : 'bg-surface',
         padded && 'p-5',
         className
       )}>

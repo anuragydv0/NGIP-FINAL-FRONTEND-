@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   BriefcaseIcon,
   CandlestickChartIcon,
@@ -65,7 +66,17 @@ export function AppShell() {
           ref={scrollRef}
           className="ngip-scroll min-w-0 flex-1 overflow-y-auto pb-16 lg:pb-0">
           
-          <Outlet />
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
+            >
+              <Outlet />
+            </motion.div>
+          </AnimatePresence>
         </main>
       </div>
 

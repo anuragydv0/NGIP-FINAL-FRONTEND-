@@ -76,6 +76,10 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.022em;
+}
+
 .dark body {
   background-image: 
     radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.015), transparent 25%),
