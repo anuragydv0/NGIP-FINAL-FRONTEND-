@@ -289,7 +289,7 @@ export function Countries() {
               options={['High', 'Upper Middle', 'Lower Middle', 'Low']}
               onChange={setIncome} />
             
-            <div className="ml-auto flex items-center gap-2">
+            <div className="ml-auto flex flex-wrap items-center gap-2">
               {view === 'table' &&
               <DensityToggle density={density} onChange={setDensity} />
               }

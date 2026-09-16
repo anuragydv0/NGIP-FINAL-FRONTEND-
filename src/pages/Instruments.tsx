@@ -279,7 +279,7 @@ export function Instruments() {
               options={['High', 'Medium', 'Low']}
               onChange={setLiquidity} />
             
-            <div className="ml-auto flex items-center gap-2">
+            <div className="ml-auto flex flex-wrap items-center gap-2">
               {view === 'table' &&
               <DensityToggle density={density} onChange={setDensity} />
               }

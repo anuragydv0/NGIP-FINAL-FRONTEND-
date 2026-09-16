@@ -19,7 +19,7 @@ export function Tabs({
       <div
         role="tablist"
         className={cx(
-          'no-scrollbar inline-flex overflow-x-auto rounded-full bg-ink/[0.06] p-1 shadow-inner',
+          'no-scrollbar inline-flex max-w-full overflow-x-auto rounded-full bg-ink/[0.06] p-1 shadow-inner',
           className
         )}>
         
@@ -50,7 +50,7 @@ export function Tabs({
     <div
       role="tablist"
       className={cx(
-        'no-scrollbar flex gap-6 overflow-x-auto border-b border-line',
+        'no-scrollbar flex w-full max-w-full gap-6 overflow-x-auto border-b border-line',
         className
       )}>
       
@@ -94,7 +94,7 @@ export function Segmented({
   return (
     <div
       className={cx(
-        'inline-flex rounded-full bg-ink/[0.06] p-1 shadow-inner',
+        'no-scrollbar inline-flex max-w-full overflow-x-auto rounded-full bg-ink/[0.06] p-1 shadow-inner',
         className
       )}>
       

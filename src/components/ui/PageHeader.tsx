@@ -59,8 +59,8 @@ export function PageHeader({
           <Breadcrumbs items={breadcrumbs} />
         </div>
       }
-      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-        <div className="min-w-0 flex-1">
+      <div className="flex flex-col items-start gap-y-4 md:flex-row md:items-center md:justify-between md:gap-x-6">
+        <div className="min-w-0 w-full md:flex-1">
           <h1 className="text-xl font-bold tracking-tight text-ink">
             {title}
           </h1>
@@ -72,7 +72,7 @@ export function PageHeader({
           {meta && <div className="mt-2">{meta}</div>}
         </div>
         {actions &&
-        <div className="flex shrink-0 items-center gap-1.5">{actions}</div>
+        <div className="flex w-full flex-wrap items-center gap-2 md:w-auto">{actions}</div>
         }
       </div>
       {tabs && <div className="mt-3">{tabs}</div>}

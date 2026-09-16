@@ -97,7 +97,7 @@ export function DataTable<T>({
 
   return (
     <div
-      className={cx('ngip-scroll overflow-auto', className)}
+      className={cx('ngip-scroll w-full max-w-full overflow-x-auto', className)}
       style={maxHeight ? { maxHeight } : undefined}>
       
       <table className={cx("w-full border-collapse", stackedOnMobile && "block md:table")}>
