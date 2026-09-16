@@ -79,7 +79,7 @@ export function InstrumentCard({
 
 }: {instrument: Instrument;onTrade?: (i: Instrument) => void;}) {
   return (
-    <div className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-card transition-[border-color,box-shadow] duration-150 ease-swift hover:border-line-strong hover:shadow-raised">
+    <div className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-card">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -209,7 +209,7 @@ export function NewsCard({
   }
 
   return (
-    <article className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-card transition-[border-color] duration-150 ease-swift hover:border-line-strong">
+    <article className="flex flex-col rounded-lg border border-line bg-surface p-4 shadow-card">
       <div className="flex items-center gap-2">
         <span className="text-sm" aria-hidden>
           {item.flag}

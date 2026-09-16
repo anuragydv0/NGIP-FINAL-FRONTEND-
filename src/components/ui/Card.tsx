@@ -13,7 +13,7 @@ export function Card({
   return (
     <section
       className={cx(
-        'rounded-xl border border-line shadow-card transition-shadow duration-200 ease-swift hover:shadow-raised',
+        'rounded-xl border border-line shadow-card',
         glass ? 'bg-surface/80 backdrop-blur-xl' : 'bg-surface',
         padded && 'p-5',
         className

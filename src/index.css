@@ -74,6 +74,8 @@ body {
   letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -89,15 +91,20 @@ h1, h2, h3, h4, h5, h6 {
   font-variant-numeric: tabular-nums;
   font-feature-settings: 'tnum' 1, 'cv01' 1;
 }
-.ngip-scroll::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ink-3) 40%, transparent) transparent;
 }
-.ngip-scroll::-webkit-scrollbar-thumb {
-  background: var(--line-strong);
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--ink-3) 40%, transparent);
   border-radius: 999px;
 }
-.ngip-scroll::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
 }
 .no-scrollbar::-webkit-scrollbar {
