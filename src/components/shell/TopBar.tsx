@@ -50,12 +50,6 @@ export function TopBar({
   const navigate = useNavigate();
   const unread = notifications.filter((n) => !n.read).length;
   return <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-3 border-b border-line bg-surface/80 backdrop-blur-xl px-3 lg:px-4">
-      <div className="hidden items-center gap-2 mr-2 lg:flex">
-        <div className="h-3 w-3 rounded-full bg-[#FF5F56] border border-[#E0443E]" />
-        <div className="h-3 w-3 rounded-full bg-[#FFBD2E] border border-[#DEA123]" />
-        <div className="h-3 w-3 rounded-full bg-[#27C93F] border border-[#1AAB29]" />
-      </div>
-
       <button type="button" onClick={onOpenMobileNav} aria-label="Open navigation" className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-ink-2 hover:bg-ink/[0.05] lg:hidden">
         <MenuIcon className="h-4.5 w-4.5" />
       </button>
