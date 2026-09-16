@@ -14,45 +14,56 @@ import { Register } from './pages/auth/Register';
 import { ForgotPassword } from './pages/auth/ForgotPassword';
 import { Onboarding } from './pages/auth/Onboarding';
 
-import { Dashboard } from './pages/Dashboard';
-import { Markets } from './pages/Markets';
-import { Countries } from './pages/Countries';
-import { CountryDetail } from './pages/CountryDetail';
-import { CountryComparison } from './pages/CountryComparison';
-import { CountryScreener } from './pages/CountryScreener';
-import { CountryIntelligence } from './pages/CountryIntelligence';
-import { Instruments } from './pages/Instruments';
-import { InstrumentDetail } from './pages/InstrumentDetail';
-import { Watchlists } from './pages/Watchlists';
+import { LoadingState } from './components/ui/States';
 
-import { Portfolio } from './pages/Portfolio';
-import { Holdings } from './pages/Holdings';
-import { Positions } from './pages/Positions';
-import { Orders } from './pages/Orders';
-import { OrderDetail } from './pages/OrderDetail';
-import { Funds } from './pages/Funds';
-import { Transactions } from './pages/Transactions';
+const Dashboard = React.lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })));
+const Markets = React.lazy(() => import('./pages/Markets').then(m => ({ default: m.Markets })));
+const Countries = React.lazy(() => import('./pages/Countries').then(m => ({ default: m.Countries })));
+const CountryDetail = React.lazy(() => import('./pages/CountryDetail').then(m => ({ default: m.CountryDetail })));
+const CountryComparison = React.lazy(() => import('./pages/CountryComparison').then(m => ({ default: m.CountryComparison })));
+const CountryScreener = React.lazy(() => import('./pages/CountryScreener').then(m => ({ default: m.CountryScreener })));
+const CountryIntelligence = React.lazy(() => import('./pages/CountryIntelligence').then(m => ({ default: m.CountryIntelligence })));
+const Instruments = React.lazy(() => import('./pages/Instruments').then(m => ({ default: m.Instruments })));
+const InstrumentDetail = React.lazy(() => import('./pages/InstrumentDetail').then(m => ({ default: m.InstrumentDetail })));
+const Watchlists = React.lazy(() => import('./pages/Watchlists').then(m => ({ default: m.Watchlists })));
 
-import { ResearchCenter } from './pages/ResearchCenter';
-import { ResearchReportPage } from './pages/ResearchReportPage';
-import { News } from './pages/News';
-import { EconomicCalendar } from './pages/EconomicCalendar';
+const Portfolio = React.lazy(() => import('./pages/Portfolio').then(m => ({ default: m.Portfolio })));
+const Holdings = React.lazy(() => import('./pages/Holdings').then(m => ({ default: m.Holdings })));
+const Positions = React.lazy(() => import('./pages/Positions').then(m => ({ default: m.Positions })));
+const Orders = React.lazy(() => import('./pages/Orders').then(m => ({ default: m.Orders })));
+const OrderDetail = React.lazy(() => import('./pages/OrderDetail').then(m => ({ default: m.OrderDetail })));
+const Funds = React.lazy(() => import('./pages/Funds').then(m => ({ default: m.Funds })));
+const Transactions = React.lazy(() => import('./pages/Transactions').then(m => ({ default: m.Transactions })));
 
-import { Analytics } from './pages/Analytics';
-import { RiskAnalysis } from './pages/RiskAnalysis';
-import { AdminDashboard, AdminUsers, AdminCountries, AdminEconomicData, AdminCGI, AdminInstruments, AdminOrders, AdminResearch, AdminAudit, SystemHealth } from './pages/Admin';
-import { StrategyBuilder } from './pages/Strategy';
-import { Backtesting } from './pages/Backtesting';
+const ResearchCenter = React.lazy(() => import('./pages/ResearchCenter').then(m => ({ default: m.ResearchCenter })));
+const ResearchReportPage = React.lazy(() => import('./pages/ResearchReportPage').then(m => ({ default: m.ResearchReportPage })));
+const News = React.lazy(() => import('./pages/News').then(m => ({ default: m.News })));
+const EconomicCalendar = React.lazy(() => import('./pages/EconomicCalendar').then(m => ({ default: m.EconomicCalendar })));
 
-import { Alerts } from './pages/Alerts';
-import { NotificationsPage } from './pages/NotificationsPage';
-import { Profile } from './pages/Profile';
-import { Settings } from './pages/Settings';
-import { Security } from './pages/Security';
-import { Reports } from './pages/Reports';
-import { ScenarioAnalysis } from './pages/ScenarioAnalysis';
-import { AIResearch } from './pages/AIResearch';
-import { AIPortfolioAnalyst } from './pages/AIPortfolioAnalyst';
+const Analytics = React.lazy(() => import('./pages/Analytics').then(m => ({ default: m.Analytics })));
+const RiskAnalysis = React.lazy(() => import('./pages/RiskAnalysis').then(m => ({ default: m.RiskAnalysis })));
+const AdminDashboard = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminDashboard })));
+const AdminUsers = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminUsers })));
+const AdminCountries = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminCountries })));
+const AdminEconomicData = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminEconomicData })));
+const AdminCGI = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminCGI })));
+const AdminInstruments = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminInstruments })));
+const AdminOrders = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminOrders })));
+const AdminResearch = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminResearch })));
+const AdminAudit = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.AdminAudit })));
+const SystemHealth = React.lazy(() => import('./pages/Admin').then(m => ({ default: m.SystemHealth })));
+const StrategyBuilder = React.lazy(() => import('./pages/Strategy').then(m => ({ default: m.StrategyBuilder })));
+const Backtesting = React.lazy(() => import('./pages/Backtesting').then(m => ({ default: m.Backtesting })));
+
+const Alerts = React.lazy(() => import('./pages/Alerts').then(m => ({ default: m.Alerts })));
+const NotificationsPage = React.lazy(() => import('./pages/NotificationsPage').then(m => ({ default: m.NotificationsPage })));
+const Profile = React.lazy(() => import('./pages/Profile').then(m => ({ default: m.Profile })));
+const Settings = React.lazy(() => import('./pages/Settings').then(m => ({ default: m.Settings })));
+const Security = React.lazy(() => import('./pages/Security').then(m => ({ default: m.Security })));
+const Reports = React.lazy(() => import('./pages/Reports').then(m => ({ default: m.Reports })));
+const ScenarioAnalysis = React.lazy(() => import('./pages/ScenarioAnalysis').then(m => ({ default: m.ScenarioAnalysis })));
+const AIResearch = React.lazy(() => import('./pages/AIResearch').then(m => ({ default: m.AIResearch })));
+const AIPortfolioAnalyst = React.lazy(() => import('./pages/AIPortfolioAnalyst').then(m => ({ default: m.AIPortfolioAnalyst })));
 
 export function App() {
   return (
@@ -62,8 +73,9 @@ export function App() {
         <ToastProvider>
           <LiveDataProvider>
           <OrderTicketProvider>
-            <Routes>
-            <Route path="/" element={<Landing />} />
+            <React.Suspense fallback={<div className="flex h-screen w-full flex-col items-center justify-center bg-canvas"><LoadingState /></div>}>
+              <Routes>
+              <Route path="/" element={<Landing />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -134,6 +146,7 @@ export function App() {
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </React.Suspense>
           </OrderTicketProvider>
           </LiveDataProvider>
         </ToastProvider>
