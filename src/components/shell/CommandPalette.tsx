@@ -135,9 +135,9 @@ export function CommandPalette({
               placeholder="Search countries, instruments, indicators, news…"
               className="h-12 w-full bg-transparent text-[13px] text-ink placeholder:text-ink-4 focus:outline-none" />
             
-              <kbd className="rounded border border-line-strong px-1.5 py-0.5 text-[10px] font-medium text-ink-4">
+              <button onClick={onClose} className="rounded border border-line-strong px-1.5 py-0.5 text-[10px] font-medium text-ink-4 hover:bg-ink/[0.04] hover:text-ink transition-colors cursor-pointer">
                 ESC
-              </kbd>
+              </button>
             </div>
             <div className="ngip-scroll max-h-[52vh] overflow-y-auto py-2">
               {results.length === 0 &&
