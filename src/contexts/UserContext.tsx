@@ -38,8 +38,8 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
     if (role === 'Admin') {
       setCurrentUser({
         id: 'u1',
-        name: 'Arjun Mehta',
-        email: 'arjun.mehta@ngip.com',
+        name: 'Anurag Yadav Admin',
+        email: 'anurag.admin@ngip.com',
         role: 'Admin',
         accountType: 'Administrator',
       });

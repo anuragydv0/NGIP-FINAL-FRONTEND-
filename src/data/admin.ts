@@ -15,7 +15,7 @@ function formatTime(ms: number) {
 }
 
 const seedUsers = [
-  { name: 'Arjun Mehta', email: 'arjun.mehta@ngip.com', role: 'Admin', status: 'Active' as const },
+  { name: 'Anurag Yadav', email: 'anurag.admin@ngip.com', role: 'Admin', status: 'Active' as const },
   { name: 'Sophia Chen', email: 'schen@ngip.com', role: 'Analyst', status: 'Active' as const },
   { name: 'Liam Davies', email: 'ldavies@ngip.com', role: 'Viewer', status: 'Suspended' as const },
   { name: 'Priya Sharma', email: 'psharma@ngip.com', role: 'Analyst', status: 'Active' as const },
@@ -33,12 +33,12 @@ export const adminUsers: AdminUser[] = seedUsers.map((u, i) => {
 });
 
 const seedLogs = [
-  { actor: 'Arjun Mehta', action: 'Update CGI Weight', target: 'Global Model v2', details: 'Increased Inflation weight to 25%' },
+  { actor: 'Anurag Yadav', action: 'Update CGI Weight', target: 'Global Model v2', details: 'Increased Inflation weight to 25%' },
   { actor: 'Sophia Chen', action: 'Publish Research', target: 'India Growth Review', details: 'Changed status to Published' },
   { actor: 'System', action: 'Data Sync', target: 'World Bank API', details: 'Synced 14,230 records' },
   { actor: 'David Kim', action: 'Suspend User', target: 'Liam Davies', details: 'Suspended pending review' },
   { actor: 'System', action: 'Data Sync Failed', target: 'IMF Statistics', details: 'Connection timeout' },
-  { actor: 'Arjun Mehta', action: 'Delist Instrument', target: 'MXNS', details: 'Removed from active trading' },
+  { actor: 'Anurag Yadav', action: 'Delist Instrument', target: 'MXNS', details: 'Removed from active trading' },
   { actor: 'Priya Sharma', action: 'Draft Research', target: 'Vietnam Manufacturing', details: 'Created new draft' }
 ];
 
